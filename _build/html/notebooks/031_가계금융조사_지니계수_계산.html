@@ -1,0 +1,2273 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>3.1 가계금융조사 지니계수 계산 &#8212; 데이터 기반 사회과학 분석</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/031_가계금융조사_지니계수_계산';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.2 청년세대 지니계수 추이" href="032_%EC%B2%AD%EB%85%84%EC%84%B8%EB%8C%80_%EC%A7%80%EB%8B%88%EA%B3%84%EC%88%98_%EC%B6%94%EC%9D%B4.html" />
+    <link rel="prev" title="3 한국 청년세대 자산불평등 추정" href="030_%ED%95%9C%EA%B5%AD_%EC%B2%AD%EB%85%84%EC%84%B8%EB%8C%80_%EC%9E%90%EC%82%B0%EB%B6%88%ED%8F%89%EB%93%B1_%EC%B6%94%EC%A0%95.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="000_%EC%84%9C%EB%AC%B8.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="데이터 기반 사회과학 분석 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="데이터 기반 사회과학 분석 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="000_%EC%84%9C%EB%AC%B8.html">
+                    시작하며
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="010_%EB%8B%A4%EB%AC%B8%ED%99%94%EC%B2%AD%EC%86%8C%EB%85%84_%ED%95%99%EC%97%85%EC%84%B1%EC%B7%A8%EB%8F%84_%EB%B6%84%EC%84%9D.html">1 다문화청소년 학업성취도 분석</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="011_%EB%8B%A4%EB%AC%B8%ED%99%94%EC%B2%AD%EC%86%8C%EB%85%84_%ED%95%99%EC%97%85%EC%84%B1%EC%B7%A8%EB%8F%84_%EC%9A%94%EC%9D%B8_%ED%83%90%EC%83%89.html">1.1 다문화청소년 학업성취도 요인 탐색</a></li>
+<li class="toctree-l2"><a class="reference internal" href="012_%EB%8B%A4%EB%AC%B8%ED%99%94%EC%B2%AD%EC%86%8C%EB%85%84%ED%8C%A8%EB%84%90_%EB%8D%B0%EC%9D%B4%ED%84%B0.html">1.2 다문화청소년패널 데이터</a></li>
+<li class="toctree-l2"><a class="reference internal" href="013_%ED%8C%A8%EB%84%90_%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D.html">1.3 패널 회귀분석</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="020_%EB%8B%A4%EB%AC%B8%ED%99%94_%EB%B0%B0%EA%B2%BD%EA%B3%BC_%ED%95%99%EC%97%85%EC%84%B1%EC%A0%81.html">2 다문화 배경과 학업성적</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="021_%EB%8B%A4%EB%AC%B8%ED%99%94_%EB%B0%B0%EA%B2%BD%EC%9D%B4_%ED%95%99%EC%97%85%EC%84%B1%EC%A0%81%EC%97%90_%EB%AF%B8%EC%B9%98%EB%8A%94_%EC%98%81%ED%96%A5.html">2.1 다문화 배경이 학업성적에 미치는 영향</a></li>
+<li class="toctree-l2"><a class="reference internal" href="022_%EC%95%84%EC%B2%AD%ED%8C%A8%EB%84%90%EB%B6%84%EC%84%9D%282010_e4%29.html">2.2 아청패널분석(2010 초4 패널)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="023_%EC%95%84%EC%B2%AD%ED%8C%A8%EB%84%90%EB%B6%84%EC%84%9D%282010_%EC%A2%85%ED%95%A9%29.html">2.3 아청패널분석(2010 종합)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="030_%ED%95%9C%EA%B5%AD_%EC%B2%AD%EB%85%84%EC%84%B8%EB%8C%80_%EC%9E%90%EC%82%B0%EB%B6%88%ED%8F%89%EB%93%B1_%EC%B6%94%EC%A0%95.html">3 한국 청년세대 자산불평등 추정</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.1 가계금융조사 지니계수 계산</a></li>
+<li class="toctree-l2"><a class="reference internal" href="032_%EC%B2%AD%EB%85%84%EC%84%B8%EB%8C%80_%EC%A7%80%EB%8B%88%EA%B3%84%EC%88%98_%EC%B6%94%EC%9D%B4.html">3.2 청년세대 지니계수 추이</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="040_%EC%88%9C%EC%9E%90%EC%82%B0_%EB%B6%84%ED%8F%AC_%EC%B6%94%EC%A0%95.html">4 순자산 분포 추정</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="041_%EC%88%9C%EC%9E%90%EC%82%B0_%EB%B6%84%ED%8F%AC_%EC%B6%94%EC%A0%95_Johnson_SU_%EB%B6%84%ED%8F%AC_%ED%99%9C%EC%9A%A9.html">4.1 순자산 분포 추정: Johnson SU 분포 활용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="042_SU_Asset_Distribution.html">4.2 SU Asset Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="043_MLE%EC%97%90%EC%84%9C_%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0_%EC%A0%9C%EC%95%BD%EC%A1%B0%EA%B1%B4_%EC%B2%98%EB%A6%AC%EB%B2%95.html">4.3 MLE에서 파라미터 제약조건 처리법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="044_MLE%EC%97%90%EC%84%9C_%EC%9E%90%EC%BD%94%EB%B9%84%EC%95%88_%EB%B0%8F_%ED%97%A4%EC%8B%9C%EC%95%88_%ED%99%9C%EC%9A%A9.html">4.4 MLE에서 헤시안 활용</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="050_%EB%82%98%EC%9D%B4%EB%B3%84_%EC%88%9C%EC%9E%90%EC%82%B0_%EB%B6%84%ED%8F%AC_%EC%B6%94%EC%A0%95.html">5 나이별 순자산 분포 추정</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="051_%EB%82%98%EC%9D%B4%EB%B3%84_%EC%88%9C%EC%9E%90%EC%82%B0_%EB%B6%84%ED%8F%AC_%EC%B6%94%EC%A0%95_SU_%EB%B6%84%ED%8F%AC_%ED%99%9C%EC%9A%A9.html">5.1 나이별 순자산 분포 추정: SU 분포 활용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="052_Bivariate_SU.html">5.2 Bivariate SU Distribution</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pilsunchoi/book3" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pilsunchoi/book3/issues/new?title=Issue%20on%20page%20%2Fnotebooks/031_가계금융조사_지니계수_계산.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/031_가계금융조사_지니계수_계산.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>3.1 가계금융조사 지니계수 계산</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1 데이터</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">데이터 다운로딩</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2 주요 통계 검토</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">평균값</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">중위값</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">백분위수</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">점유율</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">소득 정의</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">시장소득 &amp; 처분가능소득</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3 지니계수 검토</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">두 가지 표현</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">단순 지니계수</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">단순 지니계수 함수(추가)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">계산 예</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">가중 지니계수</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">가중 지니계수 함수</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">가중 지니계수(추가)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">순자산 지니계수</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">소득 지니계수</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">4 지니계수 추이</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">순자산</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">가구소득</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">처분가능소득</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>3.1 가계금융조사 지니계수 계산<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="#1-%EB%8D%B0%EC%9D%B4%ED%84%B0"><span class="xref myst">1 데이터</span></a></p></li>
+<li><p><a class="reference internal" href="#2-%EC%A3%BC%EC%9A%94-%ED%86%B5%EA%B3%84-%EA%B2%80%ED%86%A0"><span class="xref myst">2 주요 통계 검토</span></a></p></li>
+<li><p><a class="reference internal" href="#3-%EC%A7%80%EB%8B%88%EA%B3%84%EC%88%98-%EA%B2%80%ED%86%A0"><span class="xref myst">3 지니계수 검토</span></a></p></li>
+<li><p><a class="reference internal" href="#3-%EC%A7%80%EB%8B%88%EA%B3%84%EC%88%98-%EC%B6%94%EC%9D%B4"><span class="xref myst">4 지니계수 추이</span></a></p></li>
+</ul>
+<section id="id2">
+<h2>1 데이터<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p><strong>가계금융복지조사</strong>(Survey of Household Finances and Living Conditions)</p>
+<ul class="simple">
+<li><p><a href="https://kostat.go.kr/board.es?mid=a10301040300&bid=215&act=view&list_no=422053">2022년 조사결과</a>, <a href="https://www.narastat.kr/metasvc/svc/SvcMetaDcDtaPopup.do?confmNo=930001">통계설명자료</a>, <a href="https://mdis.kostat.go.kr/dwnlSvc/ofrSurvSearch.do?curMenuNo=UI_POR_P9240">마이크로데이터</a></p></li>
+</ul>
+<p>미국은 SCF가 3년 주기로 행해지는데, 2022년 SCF의 경우, <a href="https://www.aeaweb.org/forum/1850/survey-consumer-finances-invites-comments-proposed-approach">2022년 4월부터 2023년 3월까지 본 조사(main survey)가 행해졌고</a>, 연간 소득 등의 변수는 2021년을 기준으로 조사됐고, 자산이나 부채 등은 조사 시점을 기준으로 조사됐다. SCF 보고서는 모든 금액에 대해 CPI를 사용해 인플레이션 효과를 제거한 숫자를 사용해 분석하는 반면, (관측별 가중치를 제공하지만) 가중 평균 등은 사용하지 않는다.</p>
+<p>한국은 가계금융복지조사가 매년 행해지는데, 2022년 조사의 경우, 2022년 4월에 본 조사가 행해졌고, 연간 소득 등의 변수는 2021년을 기준으로 조사됐고, 자산이나 부채 등은 2022년 3월말 시점을 기준으로 조사됐다. 가계금융복지조사 보고서는 CPI 등을 사용해 인플레이션 효과를 제거하지 않는 반면, 관측별 가중치를 사용해 가중 평균, 가중 중위값, 가중 지니계수 등을 산출하고 있다.</p>
+<p>본 분석에서는 모든 금액에 대해 관측별 가중치를 사용해 가중 평균, 가중 중위값, 가중 지니계수 등을 산출하기로 한다. 그리고 한국 통계당국은 소득 관련 분석의 경우, 가령 2022년 가계금융복지조사를 이용한 결과에 대해서는 (해당 소득 통계가 2021년을 기준으로 조사됐기 때문에) 2021년에 해당하는 결과로 보고하는데, 여기에서는 소득이나 자산 및 부채 구분하지 않고 이 경우 모두 2022년 결과로 표기하기로 한다.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="k">as</span> <span class="nn">opt</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">st</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h3>데이터 다운로딩<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p>원시(raw) 데이터는 <a href="https://mdis.kostat.go.kr/dwnlSvc/ofrSurvSearch.do?curMenuNo=UI_POR_P9240">MDIS</a>(MicroData Integrated Service)에서 “소득·소비·자산 &gt; 가계금융조사”를 선택해 필요한 연도의 조사 자료를 다운로드 받는다.</p>
+<p>다음 명령문은 다운로드 받은 2010년부터 2023년까지의 원시 CSV 파일을 불러들이는 작업이다.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 파일 경로와 이름의 패턴 설정</span>
+<span class="n">file_pattern</span> <span class="o">=</span> <span class="s2">&quot;../Data/SHF/</span><span class="si">{year}</span><span class="s2">.csv&quot;</span>
+
+<span class="c1"># 데이터를 저장할 변수 초기화</span>
+<span class="n">dfs</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># 2010부터 2023까지의 파일 로드</span>
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2024</span><span class="p">):</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">file_pattern</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">year</span><span class="p">)</span>
+    <span class="n">df_name</span> <span class="o">=</span> <span class="s2">&quot;df_</span><span class="si">{year}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="n">year</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;EUC-KR&#39;</span><span class="p">)</span>
+    <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">df_name</span><span class="p">,</span> <span class="n">df</span><span class="p">))</span>
+
+<span class="c1"># 결과를 변수에 저장</span>
+<span class="k">for</span> <span class="n">df_name</span><span class="p">,</span> <span class="n">df</span> <span class="ow">in</span> <span class="n">dfs</span><span class="p">:</span>
+    <span class="nb">globals</span><span class="p">()[</span><span class="n">df_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h2>2 주요 통계 검토<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a href="https://kostat.go.kr/boardDownload.es?bid=215&list_no=422053&seq=1">2022년 가계금융복지조사 결과</a></p></li>
+</ul>
+<section id="id5">
+<h3>평균값<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p><img alt="평균값" src="https://raw.githubusercontent.com/pilsunchoi/images3/main/3-1.png" /></p>
+<ul class="simple">
+<li><p>위 표의 각주를 통해 데이터세트의 연도가 조사실시 연도이며, 자산‧부채‧순자산은 조사연도 3월말 기준, 소득‧지출은 전년 기준 자료라는 것을 알 수 있다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;순자산&#39;</span><span class="p">]</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;가중값&#39;</span><span class="p">]</span>
+<span class="n">weight_sum</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;가중값&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">weight</span><span class="o">/</span><span class="n">weight_sum</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2022년 순자산 단순평균 구하기</span>
+<span class="n">x</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>43034.836415283506
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>weighted mean 함수</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">weighted_mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    <span class="c1"># 가중 평균 계산</span>
+    <span class="n">weighted_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">w</span><span class="p">)</span>
+    <span class="n">total_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">weighted_sum</span> <span class="o">/</span> <span class="n">total_weight</span>
+    <span class="k">return</span> <span class="n">mean</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="n">weighted_mean</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(45602.32782013843, 45602.327820138424)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>이를 통해 위 보도자료의 평균 금액은 단순평균이 아니라 가중평균 값이라는 것을 알 수 있다.</strong></p></li>
+</ul>
+</section>
+<section id="id6">
+<h3>중위값<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p><img alt="중위값" src="https://raw.githubusercontent.com/pilsunchoi/images3/main/3-2.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 순자산 중위값 I</span>
+<span class="n">x</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>21660.0
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Weighted median</strong></p>
+<ul class="simple">
+<li><p>출처: Wikipedia (<a class="reference external" href="https://en.wikipedia.org/wiki/Weighted_median">Weighted median</a>)</p></li>
+</ul>
+<p><strong>가중 중위값</strong>(weighted median)은 50% 가중 백분위수로, 1888년 F. Y. Edgeworth에 의해 처음 제안되었다.</p>
+<p><strong>정의 (일반적인 경우):</strong>  <span class="math notranslate nohighlight">\(n\)</span>개의 서로 다른 정렬된 요소 <span class="math notranslate nohighlight">\(x_1, x_2, \ldots, x_n\)</span>와 양의 가중치 <span class="math notranslate nohighlight">\(w_1, w_2, \ldots, w_n\)</span>이 주어졌고, 이들이 <span class="math notranslate nohighlight">\(\sum_{i=1}^n w_i = 1\)</span>을 만족한다고 할 때, 가중 중위값은 다음 조건을 만족하는 요소 <span class="math notranslate nohighlight">\(x_k\)</span>이다.</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^{k-1} w_i \leq 1/2 \ \text{그리고} \ \sum_{i=k+1}^{n} w_i \leq 1/2\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">weighted_median</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    
+    <span class="c1"># 가중치 표준화</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="n">w</span><span class="o">/</span><span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+    <span class="c1"># 값과 가중치를 함께 정렬</span>
+    <span class="n">sorted_data</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pair</span><span class="p">:</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">cumulative_weight</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">sorted_data</span><span class="p">:</span>
+        <span class="n">cumulative_weight</span> <span class="o">+=</span> <span class="n">weight</span>
+        <span class="k">if</span> <span class="n">cumulative_weight</span> <span class="o">&gt;=</span> <span class="mf">0.5</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">weighted_median</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;가중 중위값:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+<span class="n">weighted_median</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="n">weighted_median</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>가중 중위값: 24662
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(24662, 24662)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>이를 통해 위 보도자료의 중위 금액은 단순 중위값이 아니라 가중 중위값이라는 것을 알 수 있다.</strong></p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>백분위수<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p><strong>The weighted percentile method</strong></p>
+<p>출처: Wikipedia (<a class="reference external" href="https://en.wikipedia.org/wiki/Percentile#Weighted_percentile">Percentile</a>)</p>
+<p>백분위수 함수 외에도, 총 개수 대신 총 가중치에서의 비율을 계산하는 가중 백분위수(weighted percentile)가 있다. 가중 백분위수에 대한 표준적인 함수는 없지만, 한 가지 방법은 백분위수 함수 접근법을 자연스럽게 확장하는 것이다.</p>
+<p>정렬된 <span class="math notranslate nohighlight">\(N\)</span>개의 관측값에 각각 양의 가중치 <span class="math notranslate nohighlight">\(w_1, w_2, w_3, \dots, w_N\)</span>가 부여되어 있다고 하자. 가중치의 합은 다음과 같다.</p>
+<div class="math notranslate nohighlight">
+\[S_N = \sum_{k=1}^N w_k.\]</div>
+<p>위 공식을 다음과 같이 일반화할 수 있다.</p>
+<div class="math notranslate nohighlight">
+\[ 
+p_n = \frac{1}{S_N}\left(S_n - \frac{w_n}{2}\right)\ \text{($C=1/2$일 때)} 
+\]</div>
+<p>또는</p>
+<div class="math notranslate nohighlight">
+\[ 
+p_n = \frac{S_n - Cw_n}{S_N +(1-2C)w_n}\ \text{(일반적인}\ C\text{의 경우)} 
+\]</div>
+<p>그리고</p>
+<div class="math notranslate nohighlight">
+\[
+v = v_k + \frac{P - p_k}{p_{k + 1} - p_k}(v_{k + 1} - v_k).
+\]</div>
+<p>50% 가중 백분위수가 가중 중위값(weighted median)이다.</p>
+<p><strong>weighted_percentile 함수</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">percentile</span><span class="p">):</span>
+    <span class="c1"># x: 데이터 값의 리스트 또는 배열</span>
+    <span class="c1"># w: 각 데이터 포인트의 가중치 리스트 또는 배열 (x와 크기가 같아야 함)</span>
+    <span class="c1"># percentile: 계산할 백분위수 (0부터 100까지의 값)</span>
+
+    <span class="c1"># 데이터와 가중치를 데이터와 가중치의 쌍으로 묶음</span>
+    <span class="n">data_with_weights</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span>
+
+    <span class="c1"># 데이터를 값에 따라 정렬</span>
+    <span class="n">data_with_weights</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">pair</span><span class="p">:</span> <span class="n">pair</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># 누적 가중치 초기화</span>
+    <span class="n">cumulative_weight</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># 백분위수에 해당하는 가중치 임계값 계산</span>
+    <span class="n">target_weight</span> <span class="o">=</span> <span class="p">(</span><span class="n">percentile</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="nb">sum</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+
+    <span class="c1"># 백분위수에 해당하는 데이터 값을 찾아 반환</span>
+    <span class="k">for</span> <span class="n">value</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">data_with_weights</span><span class="p">:</span>
+        <span class="n">cumulative_weight</span> <span class="o">+=</span> <span class="n">weight</span>
+        <span class="k">if</span> <span class="n">cumulative_weight</span> <span class="o">&gt;=</span> <span class="n">target_weight</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>
+
+    <span class="c1"># 백분위수가 100인 경우 가장 큰 값을 반환</span>
+    <span class="k">return</span> <span class="n">data_with_weights</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(24662, 24662)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;가중 0 백분위수:&quot;</span><span class="p">,</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;가중 10 백분위수:&quot;</span><span class="p">,</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;가중 20 백분위수:&quot;</span><span class="p">,</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;가중 30 백분위수:&quot;</span><span class="p">,</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;가중 40 백분위수:&quot;</span><span class="p">,</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;가중 50 백분위수:&quot;</span><span class="p">,</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;가중 60 백분위수:&quot;</span><span class="p">,</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;가중 70 백분위수:&quot;</span><span class="p">,</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">70</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;가중 80 백분위수:&quot;</span><span class="p">,</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;가중 90 백분위수:&quot;</span><span class="p">,</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">90</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;가중 100 백분위수:&quot;</span><span class="p">,</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">최소값:&quot;</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;최대값:&quot;</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>가중 0 백분위수: -77950
+가중 10 백분위수: 1170
+가중 20 백분위수: 5010
+가중 30 백분위수: 10267
+가중 40 백분위수: 16600
+가중 50 백분위수: 24662
+가중 60 백분위수: 34500
+가중 70 백분위수: 49022
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>가중 80 백분위수: 70968
+가중 90 백분위수: 108100
+가중 100 백분위수: 1651550
+
+최소값: -77950
+최대값: 1651550
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id8">
+<h3>점유율<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p><strong>weighted_sub_share 함수</strong></p>
+<ul class="simple">
+<li><p>가중치를 사용하여 하위 그룹의 점유율을 구하는 함수</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">weighted_sub_share</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">):</span>
+    
+    <span class="c1"># 전체 합계 계산</span>
+    <span class="n">total_sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="o">*</span><span class="n">weight</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+    <span class="c1"># lower 백분위수와 upper 백분위수 계산</span>
+    <span class="n">p_lower</span> <span class="o">=</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">lower</span><span class="p">)</span>
+    <span class="n">p_upper</span> <span class="o">=</span> <span class="n">weighted_percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+    
+    <span class="c1"># sub-group 값의 합계 계산</span>
+    <span class="n">sub_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[(</span><span class="n">data</span> <span class="o">&gt;</span> <span class="n">p_lower</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span> <span class="o">&lt;=</span> <span class="n">p_upper</span><span class="p">)]</span>
+    <span class="n">sub_sum</span> <span class="o">=</span> <span class="p">(</span><span class="n">sub_data</span><span class="o">*</span><span class="n">weight</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+    <span class="c1"># sub-group 값의 합계를 전체 합계로 나누기</span>
+    <span class="n">percentage</span> <span class="o">=</span> <span class="p">(</span><span class="n">sub_sum</span> <span class="o">/</span> <span class="n">total_sum</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    
+    <span class="k">return</span> <span class="n">percentage</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="점유율" src="https://raw.githubusercontent.com/pilsunchoi/images3/main/3-3.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">share_1</span> <span class="o">=</span> <span class="n">weighted_sub_share</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">share_2</span> <span class="o">=</span> <span class="n">weighted_sub_share</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">share_3</span> <span class="o">=</span> <span class="n">weighted_sub_share</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">share_4</span> <span class="o">=</span> <span class="n">weighted_sub_share</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="n">share_5</span> <span class="o">=</span> <span class="n">weighted_sub_share</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">share_6</span> <span class="o">=</span> <span class="n">weighted_sub_share</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+<span class="n">share_7</span> <span class="o">=</span> <span class="n">weighted_sub_share</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">share_8</span> <span class="o">=</span> <span class="n">weighted_sub_share</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+<span class="n">share_9</span> <span class="o">=</span> <span class="n">weighted_sub_share</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">share_10</span> <span class="o">=</span> <span class="n">weighted_sub_share</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1분위 점유율:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">share_1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2분위 점유율:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">share_2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;3분위 점유율:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">share_3</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;4분위 점유율:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">share_4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;5분위 점유율:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">share_5</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;6분위 점유율:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">share_6</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;7분위 점유율:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">share_7</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;8분위 점유율:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">share_8</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;9분위 점유율:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">share_9</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;10분위 점유율:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">share_10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+
+<span class="n">total</span> <span class="o">=</span> <span class="n">share_1</span><span class="o">+</span><span class="n">share_2</span><span class="o">+</span><span class="n">share_3</span><span class="o">+</span><span class="n">share_4</span><span class="o">+</span><span class="n">share_5</span><span class="o">+</span><span class="n">share_6</span><span class="o">+</span><span class="n">share_7</span><span class="o">+</span><span class="n">share_8</span><span class="o">+</span><span class="n">share_9</span><span class="o">+</span><span class="n">share_10</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;점유율 합계:&quot;</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1분위 점유율: -0.19
+2분위 점유율: 0.64
+3분위 점유율: 1.65
+4분위 점유율: 2.93
+5분위 점유율: 4.51
+6분위 점유율: 6.44
+7분위 점유율: 9.07
+8분위 점유율: 12.91
+9분위 점유율: 19.0
+10분위 점유율: 43.03
+점유율 합계: 100.00463780932658
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h3>소득 정의<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p><img alt="가구소득" src="https://raw.githubusercontent.com/pilsunchoi/images3/main/3-4.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y1</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;경상소득(보완)&#39;</span><span class="p">]</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;경상소득_근로소득(보완)&#39;</span><span class="p">]</span>
+<span class="n">y3</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;경상소득_사업소득(보완)&#39;</span><span class="p">]</span>
+<span class="n">y4</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;경상소득_재산소득(보완)&#39;</span><span class="p">]</span>
+<span class="n">y5</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;경상소득_공적이전소득(보완)&#39;</span><span class="p">]</span>
+<span class="n">y6</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;경상소득_사적이전소득(조사)&#39;</span><span class="p">]</span>
+<span class="n">y7</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;처분가능소득(보완)[경상소득(보완)-비소비지출(보완)]&#39;</span><span class="p">]</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;가중값&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;가구소득(y1):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;근로소득(y2):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">y2</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;사업소득(y3):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">y3</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;재산소득(y4):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">y4</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;공적이전소득(y5):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">y5</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;사적이전소득(y6):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">y6</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">(경상소득-비소비지출)(y7):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">y7</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">중위 가구소득:&#39;</span><span class="p">,</span> <span class="n">weighted_median</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">weight</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>가구소득(y1): 6414
+근로소득(y2): 4125
+사업소득(y3): 1160
+재산소득(y4): 426
+공적이전소득(y5): 600
+사적이전소득(y6): 103
+
+(경상소득-비소비지출)(y7): 5229
+
+중위 가구소득: 5022
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="가구 비소비지출" src="https://raw.githubusercontent.com/pilsunchoi/images3/main/3-5.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e1</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출(보완)&#39;</span><span class="p">]</span>
+<span class="n">e2</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출_세금(보완)&#39;</span><span class="p">]</span>
+<span class="n">e3</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출_공적연금사회보험료(보완)&#39;</span><span class="p">]</span>
+<span class="n">e4</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출_가구간이전지출(조사)&#39;</span><span class="p">]</span>
+<span class="n">e5</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출_비영리단체이전지출(조사)&#39;</span><span class="p">]</span>
+<span class="n">e6</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출_연간지급이자(조사)&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;비소비지출(e1):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;비소비지출_세금(e2):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">e2</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;공적연금사회보험료(e3):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">e3</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;가구간이전지출(e4):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">e4</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;비영리단체이전지출(e5):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">e5</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;연간지급이자(e6):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">e6</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>비소비지출(e1): 1185
+비소비지출_세금(e2): 400
+공적연금사회보험료(e3): 400
+가구간이전지출(e4): 137
+비영리단체이전지출(e5): 39
+연간지급이자(e6): 209
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id10">
+<h4>시장소득 &amp; 처분가능소득<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<p>출처: <a href="https://www.narastat.kr/metasvc/svc/SvcMetaDcDtaPopup.do?confmNo=930001">통계설명자료</a></p>
+<blockquote>
+<div><p>○ 시장소득 = 근로소득 <span class="math notranslate nohighlight">\(+\)</span> 사업소득 <span class="math notranslate nohighlight">\(+\)</span> 재산소득 <span class="math notranslate nohighlight">\(+\)</span> (사적이전소득 <span class="math notranslate nohighlight">\(-\)</span> 사적이전지출)<br />
+○ 처분가능소득 = 시장소득 <span class="math notranslate nohighlight">\(+\)</span> 공적이전소득 <span class="math notranslate nohighlight">\(-\)</span> 공적이전지출</p>
+<ul class="simple">
+<li><p>사적이전소득: 가구 간 또는 비영리단체로부터 받은 이전소득</p></li>
+<li><p>사적이전지출: 타 가구 또는 비영리단체에 지출하거나 기부한 금액</p></li>
+<li><p>공적이전소득: 공적연금(국민연금, 공무원연금, 사학연금, 별정우체국연금 등), 기초연금, 장애수당 등 정부의 사회수혜금</p></li>
+<li><p>공적이전지출: 소득세 등 직접세, 연금기여금 및 건강보험료 등 사회보험료 지출액</p></li>
+</ul>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">e1</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출(보완)&#39;</span><span class="p">]</span>
+<span class="n">e2</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출_세금(보완)&#39;</span><span class="p">]</span>
+<span class="n">e3</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출_공적연금사회보험료(보완)&#39;</span><span class="p">]</span>
+<span class="n">e4</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출_가구간이전지출(조사)&#39;</span><span class="p">]</span>
+<span class="n">e5</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출_비영리단체이전지출(조사)&#39;</span><span class="p">]</span>
+<span class="n">e6</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출_연간지급이자(조사)&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;비소비지출(e1):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;비소비지출_세금(e2):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">e2</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;공적연금사회보험료(e3):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">e3</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;사적이전지출(e4+e5):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">e4</span><span class="o">+</span><span class="n">e5</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;공적이전지출(e2+e3):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">e2</span><span class="o">+</span><span class="n">e3</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>비소비지출(e1): 1185
+비소비지출_세금(e2): 400
+공적연금사회보험료(e3): 400
+사적이전지출(e4+e5): 176
+공적이전지출(e2+e3): 800
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p>통계당국(통계청, 금융감독원, 한국은행) 분석 자료에 따르면,</p></li>
+<li><p>가구소득(경상소득): y1 = y2 + y3 + y4 + y5 + y6</p></li>
+<li><p>시장소득 = 근로소득 + 사업소득 + 재산소득 + 사적이전소득 - 사적이전지출(가구간 및 비영리단체 이전지출)</p></li>
+<li><p>기호로 표시하면, x1 = y2 + y3 + y4 + y6 - (e4 + e5)</p></li>
+<li><p>처분가능소득 = 시장소득 + 공적이전소득 - 공적이전지출(세금, 공적연금 기여금, 사회보험료)</p></li>
+<li><p>기호로 표시하면, x2 = x1 + y5 - (e2 + e3)</p></li>
+<li><p>따라서 처분가능소득은 x2 = y2 + y3 + y4 + y5 + y6 - (e2 + e3 + e4 + e5)</p></li>
+<li><p>그런데 가구소득은 (y2 + y3 + y4 + y5 + y6)이고, 비소비지출은 (e2 + e3 + e4 + e5 + e6)이기 때문에  처분가능소득은 가구소득(또는 경상소득)에서 (비소비지출-연간지급이자)을 뺀 것이다.</p></li>
+<li><p>한편, 가계금융복지조사 데이터세트의 “처분가능소득” 항목은 경상소득에서 비소비지출을 뺀 것이기 때문에 통계당국 분석 자료에 나오는 처분가능소득은 가계금융복지조사 데이터세트의 “처분가능소득” 항목에 연간지급이자를 더한 것에 해당한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 시장소득(근로소득 + 사업소득 + 재산소득 + 사적이전소득 - 사적이전지출(가구간 및 비영리단체 이전지출))</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="n">y2</span><span class="o">+</span><span class="n">y3</span><span class="o">+</span><span class="n">y4</span><span class="o">+</span><span class="n">y6</span><span class="o">-</span><span class="p">(</span><span class="n">e4</span><span class="o">+</span><span class="n">e5</span><span class="p">)</span>
+<span class="c1"># 통계당국 처분가능소득(= 시장소득 + 공적이전소득 - 공적이전지출(세금, 공적연금 기여금, 사회보험료))</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">x1</span><span class="o">+</span><span class="n">y5</span><span class="o">-</span><span class="p">(</span><span class="n">e2</span><span class="o">+</span><span class="n">e3</span><span class="p">)</span>
+<span class="c1"># 통계당국 처분가능소득(= 가계금융복지조사 &quot;처분가능소득&quot; 항목 + 연간지급이자)</span>
+<span class="n">x2_1</span> <span class="o">=</span> <span class="n">y7</span> <span class="o">+</span> <span class="n">e6</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;시장소득:&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;처분가능소득(1):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;처분가능소득(2):&#39;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">x2_1</span><span class="p">,</span> <span class="n">weight</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>시장소득: 5638
+처분가능소득(1): 5438
+처분가능소득(2): 5438
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="id11">
+<h2>3 지니계수 검토<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
+<p>경제학에서 <strong>지니계수</strong>(Gini coefficient)는 지니 지수(Gini index) 또는 지니 비율(Gini ratio)이라고도 불리며, 국가나 사회 집단 내에서 소득 불평등, 부의 불평등, 또는 소비 불평등을 나타내기 위해 사용하는 통계적 분산(dispersion) 측정값이다. 이 지표는 이탈리아의 통계학자이자 사회학자인 코라도 지니(Corrado Gini)에 의해 개발되었다. 소득이나 부의 분배에서 불평등 정도를 나타내는 지표로, 한 국가의 소득이나 부의 분배가 얼마나 균등한 분배에서 벗어나는지를 추정하는 데 사용된다.(출처: Wikipedia: <a class="reference external" href="https://en.wikipedia.org/wiki/Gini_coefficient">Gini coefficient</a>)</p>
+<p>지니계수는 보통 로렌츠 곡선을 기반으로 수학적으로 정의된다. 로렌츠 곡선은 인구의 전체 소득에서 하위 <span class="math notranslate nohighlight">\(x\)</span> 비율이 차지하는 소득 비율(세로축)을 누적하여 나타낸 그래프이다(아래 다이어그램 참조). 45도 직선은 완전한 소득 평등을 나타낸다. 지니계수는 평등선과 로렌츠 곡선 사이의 영역(다이어그램에서 A로 표시된)을 평등선 아래의 전체 영역(다이어그램에서 A와 B로 표시된)으로 나눈 비율로 생각할 수 있다. 즉, <span class="math notranslate nohighlight">\(G = \frac{A}{A + B}\)</span>이다. 음수 소득이 없다면, <span class="math notranslate nohighlight">\(A + B = 0.5\)</span>이므로 지니계수는 또한 <span class="math notranslate nohighlight">\(2A\)</span> 또는 <span class="math notranslate nohighlight">\(1 - 2B\)</span>로 나타낼 수 있다.</p>
+<div style="text-align: center;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Economics_Gini_coefficient2.svg/800px-Economics_Gini_coefficient2.svg.png" width="400"/>
+</div>
+<br></br>
+모든 소득이나 부가 음수가 아닌 경우를 가정하면, 지니계수의 이론적인 범위는 0(완전 평등)에서 1(절대 불평등)까지다. 이 지표는 종종 백분율로 표시되며, 0에서 100까지의 범위를 가진다. 그러나 부채와 같은 경우 음수 값이 포함되면 지니계수가 1을 초과할 수 있다. 일반적으로 우리는 지니계수가 0 이하가 될 수 없다고 가정한다.
+<p>지니계수는 <span class="math notranslate nohighlight">\(A\)</span>로 표시된 영역을 <span class="math notranslate nohighlight">\(A\)</span>와 <span class="math notranslate nohighlight">\(B\)</span>의 총 면적으로 나눈 값과 같다. 즉, <span class="math notranslate nohighlight">\(\text{Gini} = \frac{A}{A+B}\)</span>이다. 그래프의 축은 0에서 1까지이며, <span class="math notranslate nohighlight">\(A\)</span>와 <span class="math notranslate nohighlight">\(B\)</span>는 각각 면적 <span class="math notranslate nohighlight">\(\frac{1}{2}\)</span>인 삼각형을 형성한다. 따라서 <span class="math notranslate nohighlight">\(\text{Gini} = 2A = 1-2B\)</span>로 나타낼 수 있다.</p>
+<p><span class="math notranslate nohighlight">\(y\)</span>가 개인 또는 가구의 소득이나 부를 나타내는 경우, <span class="math notranslate nohighlight">\(n\)</span>명의 개인이 <span class="math notranslate nohighlight">\(y_1 \leq y_2 \leq \cdots \leq y_n\)</span> 순으로 소득을 가질 때, 다음 식을 사용하여 로렌츠 곡선을 직접 참조하지 않고 지니계수를 계산할 수 있다.</p>
+<div class="math notranslate nohighlight">
+\[
+G = \frac{2 \sum_{i=1}^n i y_i}{n \sum_{i=1}^n y_i} - \frac{n+1}{n}.
+\]</div>
+<p>또 다른 접근법은 지니계수를 상대적 평균절대차이(relative mean absolute difference)의 절반으로 정의하는 것이다. 이는 로렌츠 곡선을 기반으로 한 정의와 동일하다. 평균절대차이(mean absolute difference)는 모든 항목 쌍 간의 절대차이(absolute difference)의 평균이며, 상대적 평균절대차이는 평균절대차이를 평균값 <span class="math notranslate nohighlight">\({\bar{x}}\)</span>로 나누어 크기 차이를 정규화한 값이다. 만약 <span class="math notranslate nohighlight">\(x_i\)</span>가 개인 <span class="math notranslate nohighlight">\(i\)</span>의 부나 소득이고, 총 <span class="math notranslate nohighlight">\(n\)</span>명이 있다면 지니계수 <span class="math notranslate nohighlight">\(G\)</span>는 다음과 같이 정의된다:</p>
+<div class="math notranslate nohighlight">
+\[
+G = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n^2{\bar{x}}} = \frac{\sum_{i=1}^{n}\sum_{j=1}^{n}|x_i - x_j|}{2n \sum_{i=1}^{n} x_i}
+\]</div>
+<section id="id12">
+<h3>두 가지 표현<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>지니계수에 대해 다음 두가지 표현이 있다. 둘은 동일한가?</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>I 𝐺=2∑𝑛𝑖=1𝑖𝑦𝑖𝑛∑𝑛𝑖=1𝑦𝑖−𝑛+1𝑛
+II 𝐺=∑𝑛𝑖=1∑𝑛𝑗=1|𝑦𝑖−𝑦𝑗|2𝑛2𝜇, 𝜇=∑𝑛𝑖=1𝑥𝑖𝑛
+</pre></div>
+</div>
+</div></blockquote>
+<hr class="docutils" />
+<p><strong>&lt; ChatGPT Answer &gt;</strong></p>
+<blockquote>
+<div><p>두 표현은 <strong>수학적으로 동일한 지니계수를 나타내는 두 가지 정의</strong>입니다. 하지만 계산 방식이 다릅니다. 이를 이해하기 위해 각각의 정의를 분석해 보겠습니다.</p>
+<p><strong>정의 I</strong></p>
+<div class="math notranslate nohighlight">
+\[
+G = 2 \sum_{i=1}^n \frac{i y_i}{n \sum_{i=1}^n y_i} - \frac{n + 1}{n}
+\]</div>
+<p>구성 요소:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y_i\)</span>: 소득 데이터를 오름차순으로 정렬한 값.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span>: 관측치(개인 또는 가구) 수.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sum_{i=1}^n y_i\)</span>: 전체 소득의 총합.</p></li>
+</ul>
+<p>설명:</p>
+<ul class="simple">
+<li><p>이 식은 <strong>로렌츠 곡선의 기울기를 이용하여 면적 비율로 계산</strong>합니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\frac{i}{n}\)</span>는 <span class="math notranslate nohighlight">\(i\)</span>번째 데이터의 상대적 위치(순위)입니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sum_{i=1}^n \frac{i y_i}{\sum_{i=1}^n y_i}\)</span>는 순위와 소득 간의 비율을 합산합니다.</p></li>
+</ul>
+<p><strong>정의 II</strong></p>
+<div class="math notranslate nohighlight">
+\[
+G = \frac{\sum_{i=1}^n \sum_{j=1}^n |y_i - y_j|}{2n^2 \mu}, \quad \mu = \frac{\sum_{i=1}^n y_i}{n}
+\]</div>
+<p>구성 요소:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(|y_i - y_j|\)</span>: 두 관측치 간 소득의 절대차이.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n^2\)</span>: 전체 가능한 쌍의 조합 수.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span>: 평균 소득.</p></li>
+</ul>
+<p>설명:</p>
+<ul class="simple">
+<li><p>이 식은 <strong>모든 소득 쌍 간의 절대차이의 총합을 평균 소득으로 정규화</strong>하여 계산합니다.</p></li>
+<li><p>지니계수는 전체 소득의 불평등을 절대적인 차이로 측정한 결과를 나타냅니다.</p></li>
+</ul>
+<p><strong>동일성의 이유</strong></p>
+<p>이 두 표현은 지니계수의 동일한 개념에서 출발하며, 둘 다 로렌츠 곡선 아래 면적을 기반으로 불평등 정도를 측정합니다.</p>
+<p>주요 차이:</p>
+<ul class="simple">
+<li><p>정의 I은 <strong>소득의 순위와 로렌츠 곡선을 직접 활용</strong>한 계산 방식입니다.</p></li>
+<li><p>정의 II는 <strong>소득 차이에 기반한 정의</strong>로, 모든 관측치의 조합을 고려합니다.</p></li>
+</ul>
+<p>수학적 동일성:</p>
+<ul class="simple">
+<li><p>정의 II의 절대차이 합 <span class="math notranslate nohighlight">\(\sum_{i=1}^n \sum_{j=1}^n |y_i - y_j|\)</span>는 소득의 순위와 관계가 있습니다.</p></li>
+<li><p>정의 I의 순위 기반 식은 정의 II에서 절대차이를 순위로 변환하여 동일한 결과를 도출합니다.</p></li>
+</ul>
+<p><strong>결론</strong></p>
+<p>두 표현은 계산 방식은 다르지만 결과적으로 <strong>동일한 지니계수 값을 산출</strong>합니다.</p>
+<ul class="simple">
+<li><p>정의 I은 계산이 효율적이고, 순위 정보를 활용합니다.</p></li>
+<li><p>정의 II는 더 직관적이고, 소득 분포의 쌍별 차이를 명시적으로 보여줍니다.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="id13">
+<h3>단순 지니계수<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>가중치를 사용하지 않는 단순 지니계수 함수 gini_coefficient(x)를 두 가지 방식으로 만들어줘.</strong></p>
+</div></blockquote>
+<hr class="docutils" />
+<p><strong>&lt; ChatGPT Answer &gt;</strong></p>
+<blockquote>
+<div><p>아래는 <strong>가중치를 사용하지 않는 단순 지니계수 함수</strong>를 두 가지 방식으로 정의한 것입니다. 하나는 <strong>순위 기반 계산 방식</strong>이고, 다른 하나는 <strong>절대 차이 기반 계산 방식</strong>입니다.</p>
+<p><strong>1. 순위 기반 계산 방식</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import numpy as np
+
+def gini_coefficient_rank_based(x):
+    # 소득(x)을 오름차순으로 정렬
+    x_sorted = np.sort(x)
+    n = len(x_sorted)
+    
+    # 소득의 평균 계산
+    mean_x = np.mean(x_sorted)
+    
+    # 순위 계산
+    R = np.arange(1, n + 1)
+    
+    # 지니계수 계산
+    gini = 2 * np.sum(R * x_sorted) / (n * np.sum(x_sorted)) - (n + 1)/n
+    return gini
+</pre></div>
+</div>
+<p><strong>2. 절대 차이 기반 계산 방식</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def gini_coefficient_absolute_difference(x):
+    # 소득의 평균 계산
+    mean_x = np.mean(x)
+    
+    # 모든 소득 쌍의 절대 차이 계산
+    absolute_differences = np.abs(x[:, None] - x[None, :])
+    
+    # 지니계수 계산
+    gini = np.sum(absolute_differences) / (2 * len(x) ** 2 * mean_x)
+    return gini
+</pre></div>
+</div>
+<p><strong>사용 예제</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># 소득 데이터
+x = np.array([10, 20, 30, 40, 50])
+
+# 순위 기반 지니계수 계산
+gini_rank_based = gini_coefficient_rank_based(x)
+print(&quot;순위 기반 Gini:&quot;, gini_rank_based)
+
+# 절대 차이 기반 지니계수 계산
+gini_absolute_diff = gini_coefficient_absolute_difference(x)
+print(&quot;절대 차이 기반 Gini:&quot;, gini_absolute_diff)
+</pre></div>
+</div>
+<p><strong>결과 비교</strong></p>
+<p>두 함수는 동일한 값을 반환합니다.</p>
+<ul class="simple">
+<li><p><strong>순위 기반 방식</strong>: 계산이 더 효율적이고 대규모 데이터에 적합합니다.</p></li>
+<li><p><strong>절대 차이 기반 방식</strong>: 직관적이며 절대 소득 차이를 계산하는 데 중점을 둡니다.</p></li>
+</ul>
+<p>사용 상황에 따라 선택할 수 있습니다.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gini_coefficient_rank_based</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># 소득(x)을 오름차순으로 정렬</span>
+    <span class="n">x_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x_sorted</span><span class="p">)</span>
+    
+    <span class="c1"># 소득의 평균 계산</span>
+    <span class="n">mean_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x_sorted</span><span class="p">)</span>
+    
+    <span class="c1"># 순위 계산</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># 지니계수 계산</span>
+    <span class="n">gini</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">R</span> <span class="o">*</span> <span class="n">x_sorted</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x_sorted</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">gini</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gini_coefficient_absolute_difference</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="c1"># 소득의 평균 계산</span>
+    <span class="n">mean_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># 모든 소득 쌍의 절대 차이 계산</span>
+    <span class="n">absolute_differences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span>
+    
+    <span class="c1"># 지니계수 계산</span>
+    <span class="n">gini</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">absolute_differences</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">mean_x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">gini</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id14">
+<h4>단순 지니계수 함수(추가)<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gini_coefficient</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">sorted_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">coef</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">coef</span> <span class="o">+=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">sorted_x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">coef</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">coef</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sorted_x</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+    <span class="k">return</span> <span class="n">coef</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id15">
+<h4>계산 예<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2021년</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">df_2021</span><span class="p">[</span><span class="s1">&#39;순자산&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gini Coefficient: </span><span class="si">{</span><span class="n">gini_coefficient</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gini Coefficient: </span><span class="si">{</span><span class="n">gini_coefficient_rank_based</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gini Coefficient: </span><span class="si">{</span><span class="n">gini_coefficient_absolute_difference</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gini Coefficient: 0.6261123118887046
+Gini Coefficient: 0.6261123118887046
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\pilsu\AppData\Local\Temp\ipykernel_11040\2398204125.py:6: FutureWarning: Support for multi-dimensional indexing (e.g. `obj[:, None]`) is deprecated and will be removed in a future version.  Convert to a numpy array before indexing instead.
+  absolute_differences = np.abs(x[:, None] - x[None, :])
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gini Coefficient: 0.6261123118887048
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2022년</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;순자산&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gini Coefficient: </span><span class="si">{</span><span class="n">gini_coefficient</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gini Coefficient: </span><span class="si">{</span><span class="n">gini_coefficient_rank_based</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Gini Coefficient: </span><span class="si">{</span><span class="n">gini_coefficient_absolute_difference</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gini Coefficient: 0.6309255234233562
+Gini Coefficient: 0.6309255234233562
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\pilsu\AppData\Local\Temp\ipykernel_11040\2398204125.py:6: FutureWarning: Support for multi-dimensional indexing (e.g. `obj[:, None]`) is deprecated and will be removed in a future version.  Convert to a numpy array before indexing instead.
+  absolute_differences = np.abs(x[:, None] - x[None, :])
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Gini Coefficient: 0.6309255234233562
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id16">
+<h3>가중 지니계수<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<blockquote>
+<div><p><strong>가중치를 사용하는 경우 지니계수 두 가지 정의는 각각 어떻게 되는가?</strong></p>
+</div></blockquote>
+<hr class="docutils" />
+<p><strong>&lt; ChatGPT Answer &gt;</strong></p>
+<blockquote>
+<div><p>가중치를 사용하는 경우, 지니계수를 계산하기 위해 두 식에 가중치를 반영한 형태로 확장해야 합니다. 가중치가 포함된 데이터는 각 데이터 포인트가 동일한 중요성을 갖지 않는 상황(예: 표본 크기 조정, 인구 가중치 등)을 다룹니다.</p>
+<p><strong>정의 I에 가중치 반영</strong></p>
+<p>순위 기반 지니계수 계산식:</p>
+<div class="math notranslate nohighlight">
+\[
+G = 2 \sum_{i=1}^n \frac{w_i R_i y_i}{\sum_{i=1}^n w_i \sum_{i=1}^n w_i y_i} - \frac{n+1}{n},
+\]</div>
+<p>여기서:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w_i\)</span>: <span class="math notranslate nohighlight">\(i\)</span>번째 관측치의 가중치.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R_i\)</span>: <span class="math notranslate nohighlight">\(i\)</span>번째 관측치의 <strong>가중치가 반영된 순위</strong>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n\)</span>: 관측치의 총수.</p></li>
+</ul>
+<p>가중치가 반영된 순위 (<span class="math notranslate nohighlight">\(R_i\)</span>)</p>
+<p>가중치가 반영된 순위는 다음과 같이 정의됩니다:</p>
+<div class="math notranslate nohighlight">
+\[
+R_i = \sum_{j=1}^{i-1} w_j + \frac{w_i}{2}.
+\]</div>
+<p>설명</p>
+<ul class="simple">
+<li><p>순위를 계산할 때 가중치를 반영하여 <span class="math notranslate nohighlight">\(R_i\)</span>를 사용합니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(w_i R_i y_i\)</span>는 각 관측치의 소득, 가중치, 순위의 조합입니다.</p></li>
+<li><p>분모와 분자는 각각 총 소득과 가중치의 합으로 정규화됩니다.</p></li>
+</ul>
+<p><strong>정의 II에 가중치 반영</strong></p>
+<p>절대 차이 기반 지니계수 계산식:</p>
+<div class="math notranslate nohighlight">
+\[
+G = \frac{\sum_{i=1}^n \sum_{j=1}^n w_i w_j |y_i - y_j|}{2 \sum_{i=1}^n \sum_{j=1}^n w_i w_j \mu},
+\]</div>
+<p>여기서:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w_i\)</span>, <span class="math notranslate nohighlight">\(w_j\)</span>: <span class="math notranslate nohighlight">\(i\)</span>번째와 <span class="math notranslate nohighlight">\(j\)</span>번째 관측치의 가중치.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span>: 가중치를 반영한 평균 소득.</p></li>
+</ul>
+<p>가중치를 반영한 평균 소득 (<span class="math notranslate nohighlight">\(\mu\)</span>)
+$<span class="math notranslate nohighlight">\(
+\mu = \frac{\sum_{i=1}^n w_i y_i}{\sum_{i=1}^n w_i}.
+\)</span>$</p>
+<p>설명</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(w_i w_j |y_i - y_j|\)</span>: 두 관측치 간의 절대 소득 차이를 가중치로 조정합니다.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span>: 각 관측치의 소득을 가중치로 평균화한 값입니다.</p></li>
+<li><p>분모와 분자는 각각 가중치를 고려한 소득 차이와 소득 합계로 정규화됩니다.</p></li>
+</ul>
+<p><strong>차이점과 유사점</strong></p>
+<ul class="simple">
+<li><p><strong>정의 I 순위 기반</strong>: 가중치를 반영하여 순위를 조정한 뒤 계산.</p></li>
+<li><p><strong>정의 II 절대 차이 기반</strong>: 모든 소득 쌍의 절대 차이를 가중치로 보정하여 계산.</p></li>
+</ul>
+<p>두 식은 가중치가 포함되지 않은 경우와 마찬가지로 <strong>동일한 지니계수 값을 산출</strong>하지만, 가중치가 포함되면서 계산 복잡도가 증가할 수 있습니다.</p>
+<p>선택 기준</p>
+<ul class="simple">
+<li><p>정의 I은 효율적인 계산이 필요할 때 적합합니다.</p></li>
+<li><p>정의 II는 소득 차이에 대한 직관적인 해석이 필요할 때 유용합니다.</p></li>
+</ul>
+</div></blockquote>
+<section id="id17">
+<h4>가중 지니계수 함수<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p><strong>weighted_gini(x, w) 함수를 두 가지 방식으로 만들어줘.</strong></p>
+</div></blockquote>
+<hr class="docutils" />
+<p><strong>&lt; ChatGPT Answer &gt;</strong></p>
+<blockquote>
+<div><p>아래는 <code class="docutils literal notranslate"><span class="pre">weighted_gini(x,</span> <span class="pre">w)</span></code> 함수를 두 가지 방식으로 정의한 것입니다. 하나는 <strong>순위 기반 계산 방식</strong>이고, 다른 하나는 <strong>절대차이 기반 계산 방식</strong>입니다.</p>
+<p><strong>1. 순위 기반 계산 방식</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import numpy as np
+
+def weighted_gini_rank_based(x, w):
+    # 소득(x)과 가중치(w)를 오름차순으로 정렬
+    sorted_indices = np.argsort(x)
+    x_sorted = x[sorted_indices]
+    w_sorted = w[sorted_indices]
+    
+    # 가중치 정규화
+    w_norm = w_sorted / w_sorted.sum()
+    
+    # 누적 가중치 계산
+    cumulative_w = np.cumsum(w_norm)
+    
+    # 누적 가중치 기반 순위 계산
+    R = cumulative_w - w_norm / 2
+    
+    # 가중치 평균 소득
+    mean_x = np.sum(w_norm * x_sorted)
+    
+    # 지니계수 계산
+    gini = 2 * np.sum(R * w_norm * x_sorted) / mean_x - 1
+    return gini
+</pre></div>
+</div>
+<p><strong>2. 절대차이 기반 계산 방식</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>def weighted_gini_absolute_difference(x, w):
+    # 가중치 정규화
+    w_norm = w / w.sum()
+    
+    # 가중치를 고려한 평균 소득
+    mean_x = np.sum(w_norm * x)
+    
+    # 절대 차이 계산
+    absolute_differences = np.abs(x[:, None] - x[None, :])  # 모든 소득 쌍의 절대 차이
+    weighted_diff = np.outer(w_norm, w_norm) * absolute_differences
+    
+    # 지니계수 계산
+    gini = np.sum(weighted_diff) / (2 * mean_x)
+    return gini
+</pre></div>
+</div>
+<p><strong>사용 예제</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># 소득 데이터
+x = np.array([10, 20, 30, 40, 50])
+
+# 가중치
+w = np.array([1, 2, 1, 1, 1])
+
+# 순위 기반 지니계수 계산
+gini_rank_based = weighted_gini_rank_based(x, w)
+print(&quot;순위 기반 Gini:&quot;, gini_rank_based)
+
+# 절대 차이 기반 지니계수 계산
+gini_absolute_diff = weighted_gini_absolute_difference(x, w)
+print(&quot;절대 차이 기반 Gini:&quot;, gini_absolute_diff)
+</pre></div>
+</div>
+<p><strong>결과 비교</strong></p>
+<p>두 함수는 동일한 값을 반환합니다(수학적으로 동일).<br />
+그러나 <strong>순위 기반 방식</strong>은 계산이 더 효율적이고, <strong>절대차이 기반 방식</strong>은 직관적이지만 계산 복잡도가 더 높습니다.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">weighted_gini_rank_based</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    <span class="c1"># 소득(x)과 가중치(w)를 오름차순으로 정렬</span>
+    <span class="n">sorted_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x_sorted</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">sorted_indices</span><span class="p">]</span>
+    <span class="n">w_sorted</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">sorted_indices</span><span class="p">]</span>
+    
+    <span class="c1"># 가중치 정규화</span>
+    <span class="n">w_norm</span> <span class="o">=</span> <span class="n">w_sorted</span> <span class="o">/</span> <span class="n">w_sorted</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+    <span class="c1"># 누적 가중치 계산</span>
+    <span class="n">cumulative_w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">w_norm</span><span class="p">)</span>
+    
+    <span class="c1"># 누적 가중치 기반 순위 계산</span>
+    <span class="n">R</span> <span class="o">=</span> <span class="n">cumulative_w</span> <span class="o">-</span> <span class="n">w_norm</span> <span class="o">/</span> <span class="mi">2</span>
+    
+    <span class="c1"># 가중치 평균 소득</span>
+    <span class="n">mean_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w_norm</span> <span class="o">*</span> <span class="n">x_sorted</span><span class="p">)</span>
+    
+    <span class="c1"># 지니계수 계산</span>
+    <span class="n">gini</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">R</span> <span class="o">*</span> <span class="n">w_norm</span> <span class="o">*</span> <span class="n">x_sorted</span><span class="p">)</span> <span class="o">/</span> <span class="n">mean_x</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">gini</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">weighted_gini_absolute_difference</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    <span class="c1"># 가중치 정규화</span>
+    <span class="n">w_norm</span> <span class="o">=</span> <span class="n">w</span> <span class="o">/</span> <span class="n">w</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    
+    <span class="c1"># 가중치를 고려한 평균 소득</span>
+    <span class="n">mean_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">w_norm</span> <span class="o">*</span> <span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># 절대 차이 계산</span>
+    <span class="n">absolute_differences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:])</span>  <span class="c1"># 모든 소득 쌍의 절대 차이</span>
+    <span class="n">weighted_diff</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">w_norm</span><span class="p">,</span> <span class="n">w_norm</span><span class="p">)</span> <span class="o">*</span> <span class="n">absolute_differences</span>
+    
+    <span class="c1"># 지니계수 계산</span>
+    <span class="n">gini</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weighted_diff</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">mean_x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">gini</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id18">
+<h4>가중 지니계수(추가)<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.sciencedirect.com/science/article/abs/pii/0304407689900742">Lerman, R. I., &amp; Yitzhaki, S. (1989). Improving the accuracy of estimates of Gini coefficients. <em>Journal of econometrics</em>, 42(1), 43-47.</a></p></li>
+</ul>
+<blockquote>
+<div><p><strong>[p.44]</strong> Let <span class="math notranslate nohighlight">\(w_i\)</span> and <span class="math notranslate nohighlight">\(y_i\)</span> be the weights and incomes in a sample of <span class="math notranslate nohighlight">\(n\)</span> observations. Assume that <span class="math notranslate nohighlight">\(\sum w_i = 1\)</span> and rank the individuals so that the <span class="math notranslate nohighlight">\(y_i\)</span> are in nondecreasing order (<span class="math notranslate nohighlight">\(j &lt; k\)</span> implies <span class="math notranslate nohighlight">\(y_j &lt; y_k\)</span>). Then, as proved in our earlier note, the Gini of <span class="math notranslate nohighlight">\(y\)</span> is equal to:</p>
+<div class="math notranslate nohighlight">
+\[
+G = 2 \text{cov} \left[ y,F(y) \right]/ \bar y, \tag{1}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(F(y)\)</span> is the cumulative distribution, and <span class="math notranslate nohighlight">\(\bar{y}\)</span> is the mean of <span class="math notranslate nohighlight">\(y\)</span>. The estimator of <span class="math notranslate nohighlight">\(F(y)\)</span> in a random sample is the rank of the variate divided by <span class="math notranslate nohighlight">\(n\)</span>, the number of observations. In a weighted sample, the estimator of <span class="math notranslate nohighlight">\(F(y)\)</span> is a mid-interval of <span class="math notranslate nohighlight">\(F(y)\)</span> or:</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{F}(y_i) = \sum_{j=0}^{i-1} w_j + w_i / 2 \ \ \ \text{where} \ \ \ w_0=0, \tag{2}
+\]</div>
+<p>Using the estimates of <span class="math notranslate nohighlight">\(\hat{F}(y_i)\)</span> from (2), one can calculate the weighted covariance between <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(F(y)\)</span>. Where the data are grouped, the <span class="math notranslate nohighlight">\(y_i\)</span>’s are means of <span class="math notranslate nohighlight">\(y\)</span> within group <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>Thus, for weighted data, the formula for the Gini is:</p>
+<div class="math notranslate nohighlight">
+\[
+G = 2 \sum_{i=1}^n w_i (y_i - \bar{y})(\hat{F}_i - \bar F)/ \bar y, \tag{3}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar{y}\)</span> denotes the weighted mean.</p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">weighted_gini</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+    <span class="c1"># 데이터를 값 순서대로 정렬</span>
+    <span class="n">sorted_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>  <span class="c1"># x 기준 오름차순으로 정렬</span>
+    <span class="n">sorted_x</span><span class="p">,</span> <span class="n">sorted_w</span> <span class="o">=</span> <span class="n">sorted_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sorted_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+    
+    <span class="c1"># 총 가중치 및 누적 가중치 초기화</span>
+    <span class="n">total_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sorted_w</span><span class="p">)</span>
+    <span class="n">sorted_w</span> <span class="o">=</span> <span class="n">sorted_w</span><span class="o">/</span><span class="n">total_weight</span>
+    <span class="n">cumulative_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">sorted_w</span><span class="p">)</span>
+     
+    <span class="c1"># 지니계수 계산 항목</span>
+    <span class="n">sorted_x_dev</span> <span class="o">=</span> <span class="n">sorted_x</span> <span class="o">-</span> <span class="n">weighted_mean</span><span class="p">(</span><span class="n">sorted_x</span><span class="p">,</span> <span class="n">sorted_w</span><span class="p">)</span>
+    
+    <span class="n">f_hat</span> <span class="o">=</span> <span class="n">cumulative_weight</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>    
+    <span class="c1"># f_hat 업데이트</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f_hat</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>            
+            <span class="n">f_hat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sorted_w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">f_hat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cumulative_weight</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">sorted_w</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">f_hat_dev</span> <span class="o">=</span> <span class="n">f_hat</span> <span class="o">-</span> <span class="n">f_hat</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="n">sorted_w</span><span class="o">*</span><span class="n">sorted_x_dev</span><span class="o">*</span><span class="n">f_hat_dev</span><span class="o">/</span><span class="p">(</span><span class="n">weighted_mean</span><span class="p">(</span><span class="n">sorted_x</span><span class="p">,</span> <span class="n">sorted_w</span><span class="p">))</span>
+    <span class="n">weighted_gini</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">G</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+   
+    <span class="k">return</span> <span class="n">weighted_gini</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id19">
+<h3>순자산 지니계수<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2021년</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">df_2021</span><span class="p">[</span><span class="s1">&#39;순자산&#39;</span><span class="p">]</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="n">df_2021</span><span class="p">[</span><span class="s1">&#39;가중값&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Weighted Gini Coefficient: </span><span class="si">{</span><span class="n">weighted_gini</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Weighted Gini Coefficient: </span><span class="si">{</span><span class="n">weighted_gini_rank_based</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Weighted Gini Coefficient: </span><span class="si">{</span><span class="n">weighted_gini_absolute_difference</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Weighted Gini Coefficient: 0.6078719528264442
+Weighted Gini Coefficient: 0.6078719528264429
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\pilsu\AppData\Local\Temp\ipykernel_11040\3136730101.py:9: FutureWarning: Support for multi-dimensional indexing (e.g. `obj[:, None]`) is deprecated and will be removed in a future version.  Convert to a numpy array before indexing instead.
+  absolute_differences = np.abs(x[:, None] - x[None, :])  # 모든 소득 쌍의 절대 차이
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Weighted Gini Coefficient: 0.6078719528264449
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2022년</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;순자산&#39;</span><span class="p">]</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;가중값&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Weighted Gini Coefficient: </span><span class="si">{</span><span class="n">weighted_gini</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Weighted Gini Coefficient: </span><span class="si">{</span><span class="n">weighted_gini_rank_based</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Weighted Gini Coefficient: </span><span class="si">{</span><span class="n">weighted_gini_absolute_difference</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Weighted Gini Coefficient: 0.6099229357996474
+Weighted Gini Coefficient: 0.6099229357996503
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\pilsu\AppData\Local\Temp\ipykernel_11040\3136730101.py:9: FutureWarning: Support for multi-dimensional indexing (e.g. `obj[:, None]`) is deprecated and will be removed in a future version.  Convert to a numpy array before indexing instead.
+  absolute_differences = np.abs(x[:, None] - x[None, :])  # 모든 소득 쌍의 절대 차이
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Weighted Gini Coefficient: 0.609922935799644
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="순자산 지니계수" src="https://raw.githubusercontent.com/pilsunchoi/images3/main/3-6.png" /></p>
+</section>
+<section id="id20">
+<h3>소득 지니계수<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<p><strong>균등화 소득</strong></p>
+<ul class="simple">
+<li><p>균등화 소득(equivalised income)은 간단히 말하면 1인당 소득에 해당한다. 그런데 가구 소득을 가구 구성원 숫자로 나누는 경우가 말 그대로 “1인당 소득(per-capita income)”이고, 가령 가구원수에 제곱근 취한 값(OECD의 균등화 척도)으로 나누는 방식을 균등화소득이라고 부른다. 가구원수보다 작은 값으로 나누는 이유는 주택 공간이나 전기 등을 공동 이용함으로써 비용 절감 효과가 있기 때문이다.</p></li>
+</ul>
+<p><strong>시장소득 지니계수(2022년)</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y2</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;경상소득_근로소득(보완)&#39;</span><span class="p">]</span>
+<span class="n">y3</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;경상소득_사업소득(보완)&#39;</span><span class="p">]</span>
+<span class="n">y4</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;경상소득_재산소득(보완)&#39;</span><span class="p">]</span>
+<span class="n">y6</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;경상소득_사적이전소득(조사)&#39;</span><span class="p">]</span>
+
+<span class="n">e4</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출_가구간이전지출(조사)&#39;</span><span class="p">]</span>
+<span class="n">e5</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;지출_비소비지출_비영리단체이전지출(조사)&#39;</span><span class="p">]</span>
+
+<span class="c1"># 시장소득(근로소득 + 사업소득 + 재산소득 + 사적이전소득 - 사적이전지출(가구간 및 비영리단체 이전지출))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">y2</span><span class="o">+</span><span class="n">y3</span><span class="o">+</span><span class="n">y4</span><span class="o">+</span><span class="n">y6</span><span class="o">-</span><span class="p">(</span><span class="n">e4</span><span class="o">+</span><span class="n">e5</span><span class="p">)</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;가중값&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Weighted Gini Coefficient: </span><span class="si">{</span><span class="n">weighted_gini</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="n">df_2022</span><span class="p">[</span><span class="s1">&#39;가구원수&#39;</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">/</span><span class="n">n</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span><span class="o">*</span><span class="n">n</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Equivalised Weighted Gini: </span><span class="si">{</span><span class="n">weighted_gini</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">weight</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Weighted Gini Coefficient: 0.4851817453904762
+Equivalised Weighted Gini: 0.4051233238953859
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>참고: 2022년 균등화 소득 지니계수(통계당국 자료)</strong></p>
+<p><img alt="균등화 소득 지니계수" src="https://raw.githubusercontent.com/pilsunchoi/images3/main/3-7.png" /></p>
+</section>
+</section>
+<section id="id21">
+<h2>4 지니계수 추이<a class="headerlink" href="#id21" title="Link to this heading">#</a></h2>
+<section id="id22">
+<h3>순자산<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 연도 범위 설정 (2010년부터 2022년까지)</span>
+<span class="n">years</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2023</span><span class="p">)</span>
+
+<span class="c1"># 결과를 저장할 데이터프레임 초기화</span>
+<span class="n">gini_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;연도&#39;</span><span class="p">,</span> <span class="s1">&#39;지니계수&#39;</span><span class="p">])</span>
+
+<span class="c1"># 각 연도별로 반복</span>
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+    <span class="c1"># 해당 연도에 대한 df 지정</span>
+    <span class="n">df_year</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()[</span><span class="sa">f</span><span class="s1">&#39;df_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># 단위: 100만 원</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;순자산&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span>
+
+    <span class="c1"># 가중치</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;가중값&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># 지니계수 계산</span>
+    <span class="n">gini</span> <span class="o">=</span> <span class="n">weighted_gini</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+    
+    <span class="c1"># 결과를 데이터프레임에 추가</span>
+    <span class="n">gini_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">gini_table</span><span class="p">,</span> 
+                            <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;연도&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">year</span><span class="p">],</span> <span class="s1">&#39;지니계수&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">gini</span><span class="p">]})],</span>
+                           <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 결과를 출력</span>
+<span class="n">gini_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>연도</th>
+      <th>지니계수</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2010</td>
+      <td>0.643432</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2011</td>
+      <td>0.632480</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012</td>
+      <td>0.624853</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2013</td>
+      <td>0.612701</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014</td>
+      <td>0.598822</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2015</td>
+      <td>0.595184</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2016</td>
+      <td>0.591519</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2017</td>
+      <td>0.588894</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2018</td>
+      <td>0.593258</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2019</td>
+      <td>0.602468</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2020</td>
+      <td>0.608496</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2021</td>
+      <td>0.607872</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2022</td>
+      <td>0.609923</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p><strong>그래프 한글 표시</strong></p>
+<ul class="simple">
+<li><p>그래프에서 한글이 깨지는 것을 막기 위해서는 아래 명령문을 실행해야 한다.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">font_manager</span><span class="p">,</span> <span class="n">rc</span>
+
+<span class="n">font_path</span> <span class="o">=</span> <span class="s2">&quot;/Windows/Fonts/malgun.ttf&quot;</span>
+<span class="n">font</span> <span class="o">=</span> <span class="n">font_manager</span><span class="o">.</span><span class="n">FontProperties</span><span class="p">(</span><span class="n">fname</span><span class="o">=</span><span class="n">font_path</span><span class="p">)</span><span class="o">.</span><span class="n">get_name</span><span class="p">()</span>
+<span class="n">rc</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="n">font</span><span class="p">)</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>  <span class="c1"># 축에 마이너스 부호 제대로 나오게 하기</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>위 코드는 Windows에 해당하는 것이고, MacBook의 경우에는 위 명령문 세 번째 줄을 다음과 같이 바꿔야 한다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">font_path</span> <span class="o">=</span> <span class="s2">&quot;/System/Library/Fonts/AppleSDGothicNeo.ttc&quot;</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># 데이터프레임에서 연도와 지니계수 열을 추출</span>
+<span class="n">years</span> <span class="o">=</span> <span class="n">gini_table</span><span class="p">[</span><span class="s1">&#39;연도&#39;</span><span class="p">]</span>
+<span class="n">gini</span> <span class="o">=</span> <span class="n">gini_table</span><span class="p">[</span><span class="s1">&#39;지니계수&#39;</span><span class="p">]</span>
+
+<span class="c1"># 그래프 생성</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">gini</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;지니계수&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;순자산 지니계수&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;연도&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;지니계수&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># legend 추가</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># 그래프 표시</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/dab2a6f4d430f196fb22219af3f9d948ddb81a3ed8f9843f676afda4862eea7b.png" src="../_images/dab2a6f4d430f196fb22219af3f9d948ddb81a3ed8f9843f676afda4862eea7b.png" />
+</div>
+</div>
+</section>
+<section id="id23">
+<h3>가구소득<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 연도 범위 설정 (2010년부터 2022년까지)</span>
+<span class="n">years</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2023</span><span class="p">)</span>
+
+<span class="c1"># 결과를 저장할 데이터프레임 초기화</span>
+<span class="n">gini_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;연도&#39;</span><span class="p">,</span> <span class="s1">&#39;비균등화&#39;</span><span class="p">,</span> <span class="s1">&#39;균등화&#39;</span><span class="p">])</span>
+
+<span class="c1"># 각 연도별로 반복</span>
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+    <span class="c1"># 해당 연도에 대한 df 지정</span>
+    <span class="n">df_year</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()[</span><span class="sa">f</span><span class="s1">&#39;df_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># 해당 연도의 &#39;가구소득&#39; 변수명 설정</span>
+    <span class="k">if</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2012</span><span class="p">):</span>
+        <span class="n">income</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;조사_경상소득&#39;</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">2017</span><span class="p">):</span>
+        <span class="n">income</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;경상소득(조사)&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">income</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;경상소득(보완)&#39;</span><span class="p">]</span>
+        
+    <span class="c1"># 단위: 100만 원</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">income</span> <span class="o">/</span> <span class="mi">100</span>
+    
+    <span class="c1"># 가구원수 지정</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;가구원수&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># 가중치</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;가중값&#39;</span><span class="p">]</span>
+    <span class="n">weight_equiv</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;가중값&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+    
+    <span class="c1"># 지니계수 계산</span>
+    <span class="n">non_equiv_gini</span> <span class="o">=</span> <span class="n">weighted_gini</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+    <span class="n">equiv_gini</span> <span class="o">=</span> <span class="n">weighted_gini</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">n</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">weight_equiv</span><span class="p">)</span>
+    
+    <span class="c1"># 결과를 데이터프레임에 추가</span>
+    <span class="n">gini_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">gini_table</span><span class="p">,</span> 
+                            <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;연도&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">year</span><span class="p">],</span> 
+                                          <span class="s1">&#39;비균등화&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">non_equiv_gini</span><span class="p">],</span> 
+                                          <span class="s1">&#39;균등화&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">equiv_gini</span><span class="p">]})],</span>
+                           <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 결과를 출력</span>
+<span class="n">gini_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>연도</th>
+      <th>비균등화</th>
+      <th>균등화</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2010</td>
+      <td>0.432597</td>
+      <td>0.369490</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2011</td>
+      <td>0.453477</td>
+      <td>0.391416</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012</td>
+      <td>0.437910</td>
+      <td>0.373645</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2013</td>
+      <td>0.429451</td>
+      <td>0.366242</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014</td>
+      <td>0.425873</td>
+      <td>0.360785</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2015</td>
+      <td>0.422841</td>
+      <td>0.356196</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2016</td>
+      <td>0.421318</td>
+      <td>0.352948</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2017</td>
+      <td>0.436399</td>
+      <td>0.368031</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2018</td>
+      <td>0.437351</td>
+      <td>0.368955</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2019</td>
+      <td>0.434313</td>
+      <td>0.362595</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2020</td>
+      <td>0.431978</td>
+      <td>0.357610</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2021</td>
+      <td>0.423237</td>
+      <td>0.350860</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2022</td>
+      <td>0.426013</td>
+      <td>0.352444</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># 데이터프레임에서 연도와 지니계수 열을 추출</span>
+<span class="n">years</span> <span class="o">=</span> <span class="n">gini_table</span><span class="p">[</span><span class="s1">&#39;연도&#39;</span><span class="p">]</span>
+<span class="n">non_equiv_gini</span> <span class="o">=</span> <span class="n">gini_table</span><span class="p">[</span><span class="s1">&#39;비균등화&#39;</span><span class="p">]</span>
+<span class="n">equiv_gini</span> <span class="o">=</span> <span class="n">gini_table</span><span class="p">[</span><span class="s1">&#39;균등화&#39;</span><span class="p">]</span>
+
+<span class="c1"># 그래프 생성</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">non_equiv_gini</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;비균등화&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">equiv_gini</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;균등화&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;가구소득 지니계수&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;연도&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;지니계수&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># legend 추가</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># 그래프 표시</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d5429f7fd723c6a1ae66ea42e1d34398f9b768cce795cb8eb1299c8ed4c09e2d.png" src="../_images/d5429f7fd723c6a1ae66ea42e1d34398f9b768cce795cb8eb1299c8ed4c09e2d.png" />
+</div>
+</div>
+</section>
+<section id="id24">
+<h3>처분가능소득<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 연도 범위 설정 (2010년부터 2022년까지)</span>
+<span class="n">years</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2023</span><span class="p">)</span>
+
+<span class="c1"># 결과를 저장할 데이터프레임 초기화</span>
+<span class="n">gini_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;연도&#39;</span><span class="p">,</span> <span class="s1">&#39;비균등화&#39;</span><span class="p">,</span> <span class="s1">&#39;균등화&#39;</span><span class="p">])</span>
+
+<span class="c1"># 각 연도별로 반복</span>
+<span class="k">for</span> <span class="n">year</span> <span class="ow">in</span> <span class="n">years</span><span class="p">:</span>
+    <span class="c1"># 해당 연도에 대한 df 지정</span>
+    <span class="n">df_year</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()[</span><span class="sa">f</span><span class="s1">&#39;df_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># 해당 연도의 &#39;처분가능소득&#39; 변수명 설정</span>
+    <span class="k">if</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2012</span><span class="p">):</span>
+        <span class="n">income</span> <span class="o">=</span> <span class="s1">&#39;조사_처분가능소득&#39;</span>
+    <span class="k">elif</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">2017</span><span class="p">):</span>
+        <span class="n">income</span> <span class="o">=</span> <span class="s1">&#39;처분가능소득(조사)[경상소득-비소비지출]&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">income</span> <span class="o">=</span> <span class="s1">&#39;처분가능소득(보완)[경상소득(보완)-비소비지출(보완)]&#39;</span>
+        
+    <span class="c1"># 해당 연도의 &#39;연간지급이자&#39; 변수명 설정</span>
+    <span class="k">if</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">2012</span><span class="p">):</span>
+        <span class="n">interest_payment</span> <span class="o">=</span> <span class="s1">&#39;조사_지출_비소비지출_연간지급이자&#39;</span>
+    <span class="k">elif</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">2013</span><span class="p">):</span>
+        <span class="n">interest_payment</span> <span class="o">=</span> <span class="s1">&#39;지출_비소비지출_연간지급이자(조사)&#39;</span>
+    <span class="k">elif</span> <span class="n">year</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2013</span><span class="p">,</span> <span class="mi">2016</span><span class="p">):</span>
+        <span class="n">interest_payment</span> <span class="o">=</span> <span class="s1">&#39;조사_지출_비소비지출_연간지급이자&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">interest_payment</span> <span class="o">=</span> <span class="s1">&#39;지출_비소비지출_연간지급이자(조사)&#39;</span>
+    
+    <span class="c1"># 통계당국 처분가능소득 계산</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="n">income</span><span class="p">]</span> <span class="o">+</span> <span class="n">df_year</span><span class="p">[</span><span class="n">interest_payment</span><span class="p">]</span>
+
+    <span class="c1"># 단위: 100만 원</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">100</span>
+    
+    <span class="c1"># 가구원수 지정</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;가구원수&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># 가중치</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;가중값&#39;</span><span class="p">]</span>
+    <span class="n">weight_equiv</span> <span class="o">=</span> <span class="n">df_year</span><span class="p">[</span><span class="s1">&#39;가중값&#39;</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+    
+    <span class="c1"># 지니계수 계산</span>
+    <span class="n">non_equiv_gini</span> <span class="o">=</span> <span class="n">weighted_gini</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">weight</span><span class="p">)</span>
+    <span class="n">equiv_gini</span> <span class="o">=</span> <span class="n">weighted_gini</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="n">n</span><span class="o">**</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">weight_equiv</span><span class="p">)</span>
+    
+    <span class="c1"># 결과를 데이터프레임에 추가</span>
+    <span class="n">gini_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">gini_table</span><span class="p">,</span> 
+                            <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;연도&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">year</span><span class="p">],</span> 
+                                          <span class="s1">&#39;비균등화&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">non_equiv_gini</span><span class="p">],</span> 
+                                          <span class="s1">&#39;균등화&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">equiv_gini</span><span class="p">]})],</span>
+                           <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 결과를 출력</span>
+<span class="n">gini_table</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>연도</th>
+      <th>비균등화</th>
+      <th>균등화</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2010</td>
+      <td>0.433686</td>
+      <td>0.371533</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2011</td>
+      <td>0.453805</td>
+      <td>0.393312</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2012</td>
+      <td>0.427650</td>
+      <td>0.363424</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2013</td>
+      <td>0.422294</td>
+      <td>0.359348</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2014</td>
+      <td>0.417371</td>
+      <td>0.352706</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2015</td>
+      <td>0.413415</td>
+      <td>0.346935</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2016</td>
+      <td>0.411177</td>
+      <td>0.343195</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2017</td>
+      <td>0.425839</td>
+      <td>0.356554</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2018</td>
+      <td>0.425811</td>
+      <td>0.356709</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2019</td>
+      <td>0.419805</td>
+      <td>0.346225</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>2020</td>
+      <td>0.416496</td>
+      <td>0.340299</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>2021</td>
+      <td>0.406417</td>
+      <td>0.332595</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>2022</td>
+      <td>0.408877</td>
+      <td>0.333403</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># 데이터프레임에서 연도와 지니계수 열을 추출</span>
+<span class="n">years</span> <span class="o">=</span> <span class="n">gini_table</span><span class="p">[</span><span class="s1">&#39;연도&#39;</span><span class="p">]</span>
+<span class="n">non_equiv_gini</span> <span class="o">=</span> <span class="n">gini_table</span><span class="p">[</span><span class="s1">&#39;비균등화&#39;</span><span class="p">]</span>
+<span class="n">equiv_gini</span> <span class="o">=</span> <span class="n">gini_table</span><span class="p">[</span><span class="s1">&#39;균등화&#39;</span><span class="p">]</span>
+
+<span class="c1"># 그래프 생성</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">non_equiv_gini</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;비균등화&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">years</span><span class="p">,</span> <span class="n">equiv_gini</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;균등화&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;처분가능소득 지니계수&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;연도&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;지니계수&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># legend 추가</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># 그래프 표시</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a71079b26295086279851f38528176a53dab1ad14140997f0e280c473b8f279e.png" src="../_images/a71079b26295086279851f38528176a53dab1ad14140997f0e280c473b8f279e.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="030_%ED%95%9C%EA%B5%AD_%EC%B2%AD%EB%85%84%EC%84%B8%EB%8C%80_%EC%9E%90%EC%82%B0%EB%B6%88%ED%8F%89%EB%93%B1_%EC%B6%94%EC%A0%95.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">3 한국 청년세대 자산불평등 추정</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="032_%EC%B2%AD%EB%85%84%EC%84%B8%EB%8C%80_%EC%A7%80%EB%8B%88%EA%B3%84%EC%88%98_%EC%B6%94%EC%9D%B4.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">3.2 청년세대 지니계수 추이</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1 데이터</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">데이터 다운로딩</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">2 주요 통계 검토</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">평균값</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">중위값</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">백분위수</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">점유율</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">소득 정의</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">시장소득 &amp; 처분가능소득</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">3 지니계수 검토</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">두 가지 표현</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">단순 지니계수</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">단순 지니계수 함수(추가)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">계산 예</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">가중 지니계수</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">가중 지니계수 함수</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">가중 지니계수(추가)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">순자산 지니계수</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">소득 지니계수</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">4 지니계수 추이</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">순자산</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">가구소득</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">처분가능소득</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 최필선 민인식
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

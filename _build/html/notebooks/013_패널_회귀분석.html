@@ -1,0 +1,3388 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>1.3 패널 회귀분석 &#8212; 데이터 기반 사회과학 분석</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=5b4479735964841361fd" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=5b4479735964841361fd" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=5b4479735964841361fd" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd" />
+  <script src="../_static/vendor/fontawesome/6.1.2/js/all.min.js?digest=5b4479735964841361fd"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/013_패널_회귀분석';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2 다문화 배경과 학업성적" href="020_%EB%8B%A4%EB%AC%B8%ED%99%94_%EB%B0%B0%EA%B2%BD%EA%B3%BC_%ED%95%99%EC%97%85%EC%84%B1%EC%A0%81.html" />
+    <link rel="prev" title="1.2 다문화청소년패널 데이터" href="012_%EB%8B%A4%EB%AC%B8%ED%99%94%EC%B2%AD%EC%86%8C%EB%85%84%ED%8C%A8%EB%84%90_%EB%8D%B0%EC%9D%B4%ED%84%B0.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="000_%EC%84%9C%EB%AC%B8.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="데이터 기반 사회과학 분석 - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="데이터 기반 사회과학 분석 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="000_%EC%84%9C%EB%AC%B8.html">
+                    시작하며
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="010_%EB%8B%A4%EB%AC%B8%ED%99%94%EC%B2%AD%EC%86%8C%EB%85%84_%ED%95%99%EC%97%85%EC%84%B1%EC%B7%A8%EB%8F%84_%EB%B6%84%EC%84%9D.html">1 다문화청소년 학업성취도 분석</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="011_%EB%8B%A4%EB%AC%B8%ED%99%94%EC%B2%AD%EC%86%8C%EB%85%84_%ED%95%99%EC%97%85%EC%84%B1%EC%B7%A8%EB%8F%84_%EC%9A%94%EC%9D%B8_%ED%83%90%EC%83%89.html">1.1 다문화청소년 학업성취도 요인 탐색</a></li>
+<li class="toctree-l2"><a class="reference internal" href="012_%EB%8B%A4%EB%AC%B8%ED%99%94%EC%B2%AD%EC%86%8C%EB%85%84%ED%8C%A8%EB%84%90_%EB%8D%B0%EC%9D%B4%ED%84%B0.html">1.2 다문화청소년패널 데이터</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.3 패널 회귀분석</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="020_%EB%8B%A4%EB%AC%B8%ED%99%94_%EB%B0%B0%EA%B2%BD%EA%B3%BC_%ED%95%99%EC%97%85%EC%84%B1%EC%A0%81.html">2 다문화 배경과 학업성적</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="021_%EB%8B%A4%EB%AC%B8%ED%99%94_%EB%B0%B0%EA%B2%BD%EC%9D%B4_%ED%95%99%EC%97%85%EC%84%B1%EC%A0%81%EC%97%90_%EB%AF%B8%EC%B9%98%EB%8A%94_%EC%98%81%ED%96%A5.html">2.1 다문화 배경이 학업성적에 미치는 영향</a></li>
+<li class="toctree-l2"><a class="reference internal" href="022_%EC%95%84%EC%B2%AD%ED%8C%A8%EB%84%90%EB%B6%84%EC%84%9D%282010_e4%29.html">2.2 아청패널분석(2010 초4 패널)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="023_%EC%95%84%EC%B2%AD%ED%8C%A8%EB%84%90%EB%B6%84%EC%84%9D%282010_%EC%A2%85%ED%95%A9%29.html">2.3 아청패널분석(2010 종합)</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="030_%ED%95%9C%EA%B5%AD_%EC%B2%AD%EB%85%84%EC%84%B8%EB%8C%80_%EC%9E%90%EC%82%B0%EB%B6%88%ED%8F%89%EB%93%B1_%EC%B6%94%EC%A0%95.html">3 한국 청년세대 자산불평등 추정</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="031_%EA%B0%80%EA%B3%84%EA%B8%88%EC%9C%B5%EC%A1%B0%EC%82%AC_%EC%A7%80%EB%8B%88%EA%B3%84%EC%88%98_%EA%B3%84%EC%82%B0.html">3.1 가계금융조사 지니계수 계산</a></li>
+<li class="toctree-l2"><a class="reference internal" href="032_%EC%B2%AD%EB%85%84%EC%84%B8%EB%8C%80_%EC%A7%80%EB%8B%88%EA%B3%84%EC%88%98_%EC%B6%94%EC%9D%B4.html">3.2 청년세대 지니계수 추이</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="040_%EC%88%9C%EC%9E%90%EC%82%B0_%EB%B6%84%ED%8F%AC_%EC%B6%94%EC%A0%95.html">4 순자산 분포 추정</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="041_%EC%88%9C%EC%9E%90%EC%82%B0_%EB%B6%84%ED%8F%AC_%EC%B6%94%EC%A0%95_Johnson_SU_%EB%B6%84%ED%8F%AC_%ED%99%9C%EC%9A%A9.html">4.1 순자산 분포 추정: Johnson SU 분포 활용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="042_SU_Asset_Distribution.html">4.2 SU Asset Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="043_MLE%EC%97%90%EC%84%9C_%ED%8C%8C%EB%9D%BC%EB%AF%B8%ED%84%B0_%EC%A0%9C%EC%95%BD%EC%A1%B0%EA%B1%B4_%EC%B2%98%EB%A6%AC%EB%B2%95.html">4.3 MLE에서 파라미터 제약조건 처리법</a></li>
+<li class="toctree-l2"><a class="reference internal" href="044_MLE%EC%97%90%EC%84%9C_%EC%9E%90%EC%BD%94%EB%B9%84%EC%95%88_%EB%B0%8F_%ED%97%A4%EC%8B%9C%EC%95%88_%ED%99%9C%EC%9A%A9.html">4.4 MLE에서 헤시안 활용</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="050_%EB%82%98%EC%9D%B4%EB%B3%84_%EC%88%9C%EC%9E%90%EC%82%B0_%EB%B6%84%ED%8F%AC_%EC%B6%94%EC%A0%95.html">5 나이별 순자산 분포 추정</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="051_%EB%82%98%EC%9D%B4%EB%B3%84_%EC%88%9C%EC%9E%90%EC%82%B0_%EB%B6%84%ED%8F%AC_%EC%B6%94%EC%A0%95_SU_%EB%B6%84%ED%8F%AC_%ED%99%9C%EC%9A%A9.html">5.1 나이별 순자산 분포 추정: SU 분포 활용</a></li>
+<li class="toctree-l2"><a class="reference internal" href="052_Bivariate_SU.html">5.2 Bivariate SU Distribution</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/pilsunchoi/book3" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/pilsunchoi/book3/issues/new?title=Issue%20on%20page%20%2Fnotebooks/013_패널_회귀분석.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/013_패널_회귀분석.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>1.3 패널 회귀분석</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1 설명변수 요약</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">변수 설명</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">요약 통계량</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">변화 추이</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i">2 패널 회귀분석 I</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pooled-ols">통합(pooled) OLS 모형</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chatgpt-q-a">ChatGPT Q&amp;A</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">고정효과 모형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">확률효과 모형</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ChatGPT Q&amp;A</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ii">3 패널 회귀분석 II</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">시간 더미변수 추가</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">통합(pooled) OLS 모형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">고정효과 모형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">확률효과 모형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">추정 결과 요약</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">부록: 패널 회귀분석 모형 비교</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ols">통합 OLS 모형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">고정효과 모형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">확률효과 모형</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>1.3 패널 회귀분석<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="#1-%EC%84%A4%EB%AA%85%EB%B3%80%EC%88%98-%EC%9A%94%EC%95%BD"><span class="xref myst">1 설명변수 요약</span></a></p></li>
+<li><p><a class="reference internal" href="#2-%ED%8C%A8%EB%84%90-%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D-I"><span class="xref myst">2 패널 회귀분석 I</span></a></p></li>
+<li><p><a class="reference internal" href="#3-%ED%8C%A8%EB%84%90-%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D-II"><span class="xref myst">3 패널 회귀분석 II</span></a></p></li>
+<li><p><a class="reference internal" href="#%EB%B6%80%EB%A1%9D:-%ED%8C%A8%EB%84%90-%ED%9A%8C%EA%B7%80%EB%B6%84%EC%84%9D-%EB%AA%A8%ED%98%95-%EB%B9%84%EA%B5%90"><span class="xref myst">부록: 패널 회귀분석 모형 비교</span></a></p></li>
+</ul>
+<section id="id2">
+<h2>1 설명변수 요약<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p><strong>데이터 불러오기</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">panel_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;../Data/panel_data.csv&#39;</span><span class="p">)</span>
+<span class="n">panel_data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>PID</th>
+      <th>WAVE</th>
+      <th>SURVEY1</th>
+      <th>S_GENDER</th>
+      <th>S_AGE</th>
+      <th>S_AREA1</th>
+      <th>par_age_1</th>
+      <th>par_age_2</th>
+      <th>par_edu_1</th>
+      <th>...</th>
+      <th>GENDER</th>
+      <th>par_edu_m</th>
+      <th>par_edu_f</th>
+      <th>income</th>
+      <th>life_satis</th>
+      <th>achiev</th>
+      <th>fa_support</th>
+      <th>parenting_a</th>
+      <th>parenting_b</th>
+      <th>bullying</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>100003</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>10.0</td>
+      <td>2.0</td>
+      <td>35.0</td>
+      <td>46.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.2</td>
+      <td>4.000000</td>
+      <td>3.857143</td>
+      <td>3.000000</td>
+      <td>4.0</td>
+      <td>2.8</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>100008</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>10.0</td>
+      <td>2.0</td>
+      <td>31.0</td>
+      <td>41.0</td>
+      <td>2.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>4.0</td>
+      <td>1.2</td>
+      <td>1.166667</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>100012</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>2.0</td>
+      <td>38.0</td>
+      <td>43.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>2.5</td>
+      <td>2.000000</td>
+      <td>2.714286</td>
+      <td>3.000000</td>
+      <td>3.0</td>
+      <td>2.2</td>
+      <td>1.666667</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>100016</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>9.0</td>
+      <td>2.0</td>
+      <td>33.0</td>
+      <td>37.0</td>
+      <td>2.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>4.000000</td>
+      <td>2.714286</td>
+      <td>3.714286</td>
+      <td>3.0</td>
+      <td>1.8</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>100022</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>2.0</td>
+      <td>37.0</td>
+      <td>38.0</td>
+      <td>2.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>4.000000</td>
+      <td>2.714286</td>
+      <td>3.714286</td>
+      <td>4.0</td>
+      <td>1.6</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>16345</th>
+      <td>1630</td>
+      <td>107538</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>19.0</td>
+      <td>3.0</td>
+      <td>39.0</td>
+      <td>46.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>NaN</td>
+      <td>3.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16346</th>
+      <td>1631</td>
+      <td>107542</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>19.0</td>
+      <td>3.0</td>
+      <td>47.0</td>
+      <td>55.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>3.333333</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16347</th>
+      <td>1632</td>
+      <td>107547</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>19.0</td>
+      <td>3.0</td>
+      <td>44.0</td>
+      <td>55.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>3.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16348</th>
+      <td>1633</td>
+      <td>107554</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>19.0</td>
+      <td>3.0</td>
+      <td>46.0</td>
+      <td>54.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>3.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16349</th>
+      <td>1634</td>
+      <td>107560</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>19.0</td>
+      <td>3.0</td>
+      <td>56.0</td>
+      <td>58.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>3.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>16350 rows × 1146 columns</p>
+</div></div></div>
+</div>
+<p><strong><code class="docutils literal notranslate"><span class="pre">linearmodels</span></code> 패키지 설치</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multicultural</span> <span class="o">=</span> <span class="n">panel_data</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;GENDER&quot;</span><span class="p">:</span> <span class="s2">&quot;male&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;health_01&quot;</span><span class="p">:</span> <span class="s2">&quot;health&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;edu_plan_01&quot;</span><span class="p">:</span> <span class="s2">&quot;edu_plan&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;pr_father_01&quot;</span><span class="p">:</span> <span class="s2">&quot;pr_father&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;pr_mother_01&quot;</span><span class="p">:</span> <span class="s2">&quot;pr_mother&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;help_in_sc_01&quot;</span><span class="p">:</span> <span class="s2">&quot;help_in_sc&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;help_community_01&quot;</span><span class="p">:</span> <span class="s2">&quot;help_community&quot;</span><span class="p">}</span>
+<span class="p">)</span>
+<span class="n">multicultural</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>PID</th>
+      <th>WAVE</th>
+      <th>SURVEY1</th>
+      <th>S_GENDER</th>
+      <th>S_AGE</th>
+      <th>S_AREA1</th>
+      <th>par_age_1</th>
+      <th>par_age_2</th>
+      <th>par_edu_1</th>
+      <th>...</th>
+      <th>male</th>
+      <th>par_edu_m</th>
+      <th>par_edu_f</th>
+      <th>income</th>
+      <th>life_satis</th>
+      <th>achiev</th>
+      <th>fa_support</th>
+      <th>parenting_a</th>
+      <th>parenting_b</th>
+      <th>bullying</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>100003</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>10.0</td>
+      <td>2.0</td>
+      <td>35.0</td>
+      <td>46.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.2</td>
+      <td>4.000000</td>
+      <td>3.857143</td>
+      <td>3.000000</td>
+      <td>4.0</td>
+      <td>2.8</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>100008</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>10.0</td>
+      <td>2.0</td>
+      <td>31.0</td>
+      <td>41.0</td>
+      <td>2.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>4.000000</td>
+      <td>4.0</td>
+      <td>1.2</td>
+      <td>1.166667</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>100012</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>2.0</td>
+      <td>38.0</td>
+      <td>43.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>2.5</td>
+      <td>2.000000</td>
+      <td>2.714286</td>
+      <td>3.000000</td>
+      <td>3.0</td>
+      <td>2.2</td>
+      <td>1.666667</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>100016</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>9.0</td>
+      <td>2.0</td>
+      <td>33.0</td>
+      <td>37.0</td>
+      <td>2.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>4.000000</td>
+      <td>2.714286</td>
+      <td>3.714286</td>
+      <td>3.0</td>
+      <td>1.8</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>100022</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>10.0</td>
+      <td>2.0</td>
+      <td>37.0</td>
+      <td>38.0</td>
+      <td>2.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>4.000000</td>
+      <td>2.714286</td>
+      <td>3.714286</td>
+      <td>4.0</td>
+      <td>1.6</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>16345</th>
+      <td>1630</td>
+      <td>107538</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>19.0</td>
+      <td>3.0</td>
+      <td>39.0</td>
+      <td>46.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>NaN</td>
+      <td>3.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16346</th>
+      <td>1631</td>
+      <td>107542</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>19.0</td>
+      <td>3.0</td>
+      <td>47.0</td>
+      <td>55.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>3.333333</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16347</th>
+      <td>1632</td>
+      <td>107547</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>19.0</td>
+      <td>3.0</td>
+      <td>44.0</td>
+      <td>55.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>3.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16348</th>
+      <td>1633</td>
+      <td>107554</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>19.0</td>
+      <td>3.0</td>
+      <td>46.0</td>
+      <td>54.0</td>
+      <td>4.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>3.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>16349</th>
+      <td>1634</td>
+      <td>107560</td>
+      <td>10.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>19.0</td>
+      <td>3.0</td>
+      <td>56.0</td>
+      <td>58.0</td>
+      <td>1.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>3.000000</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>16350 rows × 1146 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multicultural</span><span class="p">[</span><span class="s1">&#39;male&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">multicultural</span><span class="p">[</span><span class="s1">&#39;male&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">multicultural</span><span class="p">[</span><span class="s1">&#39;help_in_sc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">multicultural</span><span class="p">[</span><span class="s1">&#39;help_in_sc&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">multicultural</span><span class="p">[</span><span class="s1">&#39;help_community&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">multicultural</span><span class="p">[</span><span class="s1">&#39;help_community&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># 원하는 변수 선택</span>
+<span class="n">selected_vars</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;WAVE&#39;</span><span class="p">,</span> <span class="s1">&#39;score_overall&#39;</span><span class="p">,</span> <span class="s1">&#39;male&#39;</span><span class="p">,</span> 
+                 <span class="s1">&#39;par_edu_m&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_f&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;health&#39;</span><span class="p">,</span> <span class="s1">&#39;life_satis&#39;</span><span class="p">,</span> 
+                 <span class="s1">&#39;achiev&#39;</span><span class="p">,</span> <span class="s1">&#39;edu_plan&#39;</span><span class="p">,</span> <span class="s1">&#39;fa_support&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_father&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_mother&#39;</span><span class="p">,</span> 
+                 <span class="s1">&#39;parenting_a&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_b&#39;</span><span class="p">,</span> <span class="s1">&#39;bullying&#39;</span><span class="p">,</span> <span class="s1">&#39;help_in_sc&#39;</span><span class="p">,</span> <span class="s1">&#39;help_community&#39;</span><span class="p">]</span>
+
+<span class="c1"># 선택한 변수만으로 데이터프레임 생성</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">multicultural</span><span class="p">[</span><span class="n">selected_vars</span><span class="p">]</span>
+
+<span class="c1"># 결측치가 있는 행 제거</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ID</th>
+      <th>WAVE</th>
+      <th>score_overall</th>
+      <th>male</th>
+      <th>par_edu_m</th>
+      <th>par_edu_f</th>
+      <th>income</th>
+      <th>health</th>
+      <th>life_satis</th>
+      <th>achiev</th>
+      <th>edu_plan</th>
+      <th>fa_support</th>
+      <th>pr_father</th>
+      <th>pr_mother</th>
+      <th>parenting_a</th>
+      <th>parenting_b</th>
+      <th>bullying</th>
+      <th>help_in_sc</th>
+      <th>help_community</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1.0</td>
+      <td>4.6</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.2</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>3.857143</td>
+      <td>4.0</td>
+      <td>3.000000</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>4.000000</td>
+      <td>2.8</td>
+      <td>1.000000</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>1.0</td>
+      <td>4.2</td>
+      <td>0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>4.000000</td>
+      <td>4.0</td>
+      <td>4.000000</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>4.000000</td>
+      <td>1.2</td>
+      <td>1.166667</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>1.0</td>
+      <td>3.8</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>2.5</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.714286</td>
+      <td>3.0</td>
+      <td>3.000000</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>3.000000</td>
+      <td>2.2</td>
+      <td>1.666667</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>1.0</td>
+      <td>3.6</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.714286</td>
+      <td>4.0</td>
+      <td>3.714286</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>3.000000</td>
+      <td>1.8</td>
+      <td>1.000000</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>1.0</td>
+      <td>2.8</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>2.714286</td>
+      <td>4.0</td>
+      <td>3.714286</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>4.000000</td>
+      <td>1.6</td>
+      <td>1.000000</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>14710</th>
+      <td>1630</td>
+      <td>9.0</td>
+      <td>3.2</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>2.5</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.714286</td>
+      <td>2.0</td>
+      <td>3.428571</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>2.666667</td>
+      <td>1.8</td>
+      <td>1.000000</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>14711</th>
+      <td>1631</td>
+      <td>9.0</td>
+      <td>3.4</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.285714</td>
+      <td>2.0</td>
+      <td>3.000000</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>2.666667</td>
+      <td>3.0</td>
+      <td>1.000000</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14712</th>
+      <td>1632</td>
+      <td>9.0</td>
+      <td>3.4</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.000000</td>
+      <td>2.0</td>
+      <td>2.142857</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>3.333333</td>
+      <td>3.2</td>
+      <td>1.000000</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14713</th>
+      <td>1633</td>
+      <td>9.0</td>
+      <td>3.6</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.857143</td>
+      <td>2.0</td>
+      <td>3.428571</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>3.000000</td>
+      <td>3.0</td>
+      <td>1.666667</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>14714</th>
+      <td>1634</td>
+      <td>9.0</td>
+      <td>3.2</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.000000</td>
+      <td>2.0</td>
+      <td>3.000000</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>3.000000</td>
+      <td>3.6</td>
+      <td>3.166667</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>11572 rows × 19 columns</p>
+</div></div></div>
+</div>
+<section id="id3">
+<h3>변수 설명<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>변수명</p></th>
+<th class="head text-left"><p>내     용</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>WAVE <br> (조사차수)</p></td>
+<td class="text-left"><p>1. 2011년 2. 2012년 3. 2013년 4. 2014년 5. 2015년 6. 2016년 7. 2017년 8. 2018년 9. 2019년 10. 2020년</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>score_overall <br> (종합성적)</p></td>
+<td class="text-left"><p>- 국어, 영어, 수학, 사회, 과학 성적 평균 <br> 1. 매우 못하는 편이다 2. 못하는 편이다 3. 보통이다 4. 잘하는 편이다 5. 매우 잘하는 편이다</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>male <br> (성별)</p></td>
+<td class="text-left"><p>0. 여학생  1. 남학생</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>par_edu_m <br> (어머니 학력) <br> par_edu_f <br> (아버지 학력)</p></td>
+<td class="text-left"><p>1. 중졸 이하 <br>2. 고졸 <br>3. 대학(2~3년제) 졸업 <br>4. 대학교(4년제 이상) 졸업 <br>5. 대학원 졸업(석박사 포함)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>income <br> (월평균 소득수준)</p></td>
+<td class="text-left"><p>단위: 백만원(세전)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>health <br> (주관적 건강인식)</p></td>
+<td class="text-left"><p>1. 매우 건강하다 2. 건강한 편이다 3. 건강하지 못한 편이다 4. 매우 건강하지 못하다</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>life_satis <br> (삶의 만족도)</p></td>
+<td class="text-left"><p>- 나는 사는 게 즐겁다<br>- 나는 걱정거리가 별로 없다<br>- 나는 내 삶이 행복하다고 생각한다</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>achiev <br> (성취동기)</p></td>
+<td class="text-left"><p>- 나는 내가 세운 학습목표를 이루기 위해 노력한다<br>- 나는 내가 좋아하는 일을 잘하기 위해 끝까지 노력한다<br>- 나는 내가 가치있다고 생각하는 일에 대해 최선을 다한다<br>- 나는 나 스스로 학습목표를 결정한다<br>- 나는 스스로 정한 목표를 향해 나아가는 것을 좋아한다<br>- 내가 관심있는 일을 시도하는 것을 즐긴다<br>- 나는 내 자신이 만족할 때까지 노력한다</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>edu_plan <br> (희망 교육수준)</p></td>
+<td class="text-left"><p>&lt;1-2차년도&gt; 1.초등학교 2.중학교 3.고등학교 4.대학교<br>&lt;3-9차년도&gt; 1.초등학교 2.중학교 3.고등학교 4.대학교 5.대학원</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>fa_support <br> (가족의 지지)</p></td>
+<td class="text-left"><p>- 우리 가족은 서로 많이 도와주는 것 같다<br>- 우리 가족은 나를 잘 이해해주는 것 같다<br>- 우리 가족은 가지고 있는 것들을 서로 나누어 가지는 것 같다<br>- 우리 가족은 내가 힘들어할 때 내게 힘과 용기를 주는 것 같다<br>- 우리 가족은 내 생각이나 말을 잘 들어주는 것 같다<br>- 우리 가족은 나를 중요한 사람으로 생각하는 것 같다<br>- 우리 가족은 나에게 관심이 많은 것 같다</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>pr_father <br> (아버지에 대한 생각) <br> pr_mother <br> (어머니에 대한 생각)</p></td>
+<td class="text-left"><p>1. 전혀 자랑스럽지 않다 <br>2. 자랑스럽지 않은 편이다 <br>3. 보통이다 <br>4. 자랑스러운 편이다 <br>5. 매우 자랑스럽다</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>parenting_a <br> (부모의 감독태도)</p></td>
+<td class="text-left"><p>- 부모님 또는 보호자는 내가 방과 후에 어디에 가는지 알고 계신다<br>- 부모님 또는 보호자는 내가 시간을 어떻게 보내는지 알고 계신다<br>- 부모님 또는 보호자는 내가 외출할 경우 언제 들어올지 알고 계신다</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>parenting_b <br> (부모의 방임태도)</p></td>
+<td class="text-left"><p>- 부모님 또는 보호자는 나보다 바깥일을 더 중요하게 생각하시는 것 같다<br>- 부모님 또는 보호자는 나에게 관심이 없으셔서 칭찬이나 혼내시는 일이 없다<br>- 부모님 또는 보호자는 내가 어떤 생각을 갖고 있는지 관심이 없으시다<br>- 부모님 또는 보호자는 내가 필요로 할 때 곁에 없으시다<br>- 부모님 또는 보호자는 내가 아플 때에도 귀찮아서 병원에 데려가지 않으신다</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>bullying <br> (집단괴롭힘 피해경험)</p></td>
+<td class="text-left"><p>- 다른 학생들로부터 따돌림을 당했다<br>- 다른 학생들로부터 욕을 듣거나 심한 집적거림이나 또는 놀림을 당했다<br>- 다른 학생들이 나를 고의로 어떤 일에 끼워주지 않거나 완전히 무시했다<br>- 다른 학생들로부터 맞거나 발로 차이거나 위협을 당했다<br>- 나에 대해 거짓소문을 퍼뜨려서 다른 친구들이 나를 싫어하게 되었다<br>- 다른 학생들로부터 신체 특징이나 외모에 대해 험한 욕설이나 놀림을 당했다</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>help_in_sc <br> (학교 내 도움을 주는 어른의 유무)</p></td>
+<td class="text-left"><p>0. 아니오 1. 예</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>help_community <br> (학교 밖 도움을 주는 어른의 유무)</p></td>
+<td class="text-left"><p>0. 아니오 1. 예</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><strong>주:</strong></p></td>
+<td class="text-left"><p>life_satis, achiev, fa_support, parenting_a, parenting_b, bullying 등 6개 변수는 표의 해당 문항들에 대한 응답을 평균한 것으로서 모든 문항들은 동일한 4점 척도(1=전혀 그렇지 않다, 2=그렇지 않은 편이다, 3=그런 편이다, 4=매우 그렇다)로 조사됐다.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">shape</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(11572, 19)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WAVE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0    1558
+2.0    1424
+3.0    1373
+4.0    1313
+5.0    1270
+6.0    1249
+7.0    1182
+8.0    1125
+9.0    1078
+Name: WAVE, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id4">
+<h3>요약 통계량<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_stats</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summary_stats</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                 ID          WAVE  score_overall          male     par_edu_m  \
+count  11572.000000  11572.000000   11572.000000  11572.000000  11572.000000   
+mean     840.748704      4.718026       3.190588      0.491531      2.472001   
+std      466.476427      2.579292       0.731391      0.499950      0.911328   
+min        1.000000      1.000000       1.000000      0.000000      1.000000   
+25%      440.000000      2.000000       2.800000      0.000000      2.000000   
+50%      851.000000      5.000000       3.200000      0.000000      2.000000   
+75%     1241.000000      7.000000       3.600000      1.000000      3.000000   
+max     1634.000000      9.000000       5.000000      1.000000      5.000000   
+
+          par_edu_f        income        health    life_satis        achiev  \
+count  11572.000000  11572.000000  11572.000000  11572.000000  11572.000000   
+mean       2.001037      2.512627      1.676115      3.102258      3.009222   
+std        0.936770      1.506123      0.630243      0.613742      0.490790   
+min        1.000000      0.000000      1.000000      1.000000      1.000000   
+25%        1.000000      1.700000      1.000000      2.666667      2.714286   
+50%        2.000000      2.500000      2.000000      3.000000      3.000000   
+75%        2.000000      3.000000      2.000000      3.666667      3.285714   
+max        5.000000     99.990000      4.000000      4.000000      4.000000   
+
+           edu_plan    fa_support     pr_father     pr_mother   parenting_a  \
+count  11572.000000  11572.000000  11572.000000  11572.000000  11572.000000   
+mean       3.658745      3.192669      4.058676      4.226149      3.216932   
+std        0.768367      0.563691      0.895700      0.787025      0.598669   
+min        1.000000      1.000000      1.000000      1.000000      1.000000   
+25%        3.000000      3.000000      3.000000      4.000000      3.000000   
+50%        4.000000      3.000000      4.000000      4.000000      3.000000   
+75%        4.000000      3.714286      5.000000      5.000000      4.000000   
+max        5.000000      4.000000      5.000000      5.000000      4.000000   
+
+        parenting_b      bullying    help_in_sc  help_community  
+count  11572.000000  11572.000000  11572.000000    11572.000000  
+mean       1.727497      1.072027      0.464656        0.335292  
+std        0.600591      0.278563      0.498771        0.472113  
+min        1.000000      1.000000      0.000000        0.000000  
+25%        1.200000      1.000000      0.000000        0.000000  
+50%        1.800000      1.000000      0.000000        0.000000  
+75%        2.000000      1.000000      1.000000        1.000000  
+max        4.000000      4.000000      1.000000        1.000000  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># describe() 함수를 사용하여 요약 통계량을 얻습니다.</span>
+<span class="n">summary_stats</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+
+<span class="c1"># 원하는 통계량만 선택합니다.</span>
+<span class="n">desired_stats</span> <span class="o">=</span> <span class="n">summary_stats</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">,</span> <span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="s1">&#39;std&#39;</span><span class="p">]]</span>
+
+<span class="c1"># Transpose를 사용하여 변수명을 행으로, 통계량을 열로 만듭니다.</span>
+<span class="n">desired_stats</span> <span class="o">=</span> <span class="n">desired_stats</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+
+<span class="c1"># 결과를 출력합니다.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">desired_stats</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                min      max        mean         std
+ID              1.0  1634.00  840.748704  466.476427
+WAVE            1.0     9.00    4.718026    2.579292
+score_overall   1.0     5.00    3.190588    0.731391
+male            0.0     1.00    0.491531    0.499950
+par_edu_m       1.0     5.00    2.472001    0.911328
+par_edu_f       1.0     5.00    2.001037    0.936770
+income          0.0    99.99    2.512627    1.506123
+health          1.0     4.00    1.676115    0.630243
+life_satis      1.0     4.00    3.102258    0.613742
+achiev          1.0     4.00    3.009222    0.490790
+edu_plan        1.0     5.00    3.658745    0.768367
+fa_support      1.0     4.00    3.192669    0.563691
+pr_father       1.0     5.00    4.058676    0.895700
+pr_mother       1.0     5.00    4.226149    0.787025
+parenting_a     1.0     4.00    3.216932    0.598669
+parenting_b     1.0     4.00    1.727497    0.600591
+bullying        1.0     4.00    1.072027    0.278563
+help_in_sc      0.0     1.00    0.464656    0.498771
+help_community  0.0     1.00    0.335292    0.472113
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id5">
+<h3>변화 추이<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1"># 그래프를 그릴 변수들의 리스트</span>
+<span class="n">variables</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;score_overall&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_m&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_f&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;health&#39;</span><span class="p">,</span> 
+             <span class="s1">&#39;life_satis&#39;</span><span class="p">,</span> <span class="s1">&#39;achiev&#39;</span><span class="p">,</span> <span class="s1">&#39;edu_plan&#39;</span><span class="p">,</span> <span class="s1">&#39;fa_support&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_father&#39;</span><span class="p">,</span> 
+             <span class="s1">&#39;pr_mother&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_a&#39;</span><span class="p">,</span><span class="s1">&#39;parenting_b&#39;</span><span class="p">,</span> <span class="s1">&#39;bullying&#39;</span><span class="p">,</span> <span class="s1">&#39;help_in_sc&#39;</span><span class="p">,</span> 
+             <span class="s1">&#39;help_community&#39;</span><span class="p">]</span>
+
+<span class="c1"># 그래프를 4x4로 배열</span>
+<span class="n">num_rows</span><span class="p">,</span> <span class="n">num_cols</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">num_rows</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+
+<span class="c1"># 연도별 평균값 그래프를 그립니다.</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">variable</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">variables</span><span class="p">):</span>
+    <span class="n">row</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">num_cols</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span>
+    
+    <span class="c1"># 연도별 평균값 계산</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;WAVE&#39;</span><span class="p">)[</span><span class="n">variable</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    
+    <span class="c1"># 그래프 그리기</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;WAVE&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">variable</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">variable</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># 틱 레이블의 폰트 크기 조절</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>  <span class="c1"># 폰트 크기를 10으로 설정</span>
+    
+    <span class="c1"># 가로축과 세로축 레이블 없애기</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1"># 그래프 레이아웃 조정</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># 그래프 표시</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/726b604f5da843e96f6ee123d7b1583f13e12d32602ade1d5b1d474afcddc44f.png" src="../_images/726b604f5da843e96f6ee123d7b1583f13e12d32602ade1d5b1d474afcddc44f.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="i">
+<h2>2 패널 회귀분석 I<a class="headerlink" href="#i" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install linearmodels  # 처음에 한 번만 설치</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ID와 WAVE를 인덱스로 설정</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;WAVE&#39;</span><span class="p">])</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>score_overall</th>
+      <th>male</th>
+      <th>par_edu_m</th>
+      <th>par_edu_f</th>
+      <th>income</th>
+      <th>health</th>
+      <th>life_satis</th>
+      <th>achiev</th>
+      <th>edu_plan</th>
+      <th>fa_support</th>
+      <th>pr_father</th>
+      <th>pr_mother</th>
+      <th>parenting_a</th>
+      <th>parenting_b</th>
+      <th>bullying</th>
+      <th>help_in_sc</th>
+      <th>help_community</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th>WAVE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <th>1.0</th>
+      <td>4.6</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.2</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>3.857143</td>
+      <td>4.0</td>
+      <td>3.000000</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>4.000000</td>
+      <td>2.8</td>
+      <td>1.000000</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <th>1.0</th>
+      <td>4.2</td>
+      <td>0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>4.000000</td>
+      <td>4.0</td>
+      <td>4.000000</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>4.000000</td>
+      <td>1.2</td>
+      <td>1.166667</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <th>1.0</th>
+      <td>3.8</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>2.5</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.714286</td>
+      <td>3.0</td>
+      <td>3.000000</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>3.000000</td>
+      <td>2.2</td>
+      <td>1.666667</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <th>1.0</th>
+      <td>3.6</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.714286</td>
+      <td>4.0</td>
+      <td>3.714286</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>3.000000</td>
+      <td>1.8</td>
+      <td>1.000000</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <th>1.0</th>
+      <td>2.8</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>2.714286</td>
+      <td>4.0</td>
+      <td>3.714286</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>4.000000</td>
+      <td>1.6</td>
+      <td>1.000000</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1630</th>
+      <th>9.0</th>
+      <td>3.2</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>2.5</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.714286</td>
+      <td>2.0</td>
+      <td>3.428571</td>
+      <td>4.0</td>
+      <td>5.0</td>
+      <td>2.666667</td>
+      <td>1.8</td>
+      <td>1.000000</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1631</th>
+      <th>9.0</th>
+      <td>3.4</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.285714</td>
+      <td>2.0</td>
+      <td>3.000000</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>2.666667</td>
+      <td>3.0</td>
+      <td>1.000000</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1632</th>
+      <th>9.0</th>
+      <td>3.4</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.000000</td>
+      <td>2.0</td>
+      <td>2.142857</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>3.333333</td>
+      <td>3.2</td>
+      <td>1.000000</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1633</th>
+      <th>9.0</th>
+      <td>3.6</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.857143</td>
+      <td>2.0</td>
+      <td>3.428571</td>
+      <td>5.0</td>
+      <td>5.0</td>
+      <td>3.000000</td>
+      <td>3.0</td>
+      <td>1.666667</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1634</th>
+      <th>9.0</th>
+      <td>3.2</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.000000</td>
+      <td>2.0</td>
+      <td>3.000000</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>3.000000</td>
+      <td>3.6</td>
+      <td>3.166667</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>11572 rows × 17 columns</p>
+</div></div></div>
+</div>
+<section id="pooled-ols">
+<h3>통합(pooled) OLS 모형<a class="headerlink" href="#pooled-ols" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">linearmodels.panel</span> <span class="kn">import</span> <span class="n">PooledOLS</span><span class="p">,</span> <span class="n">PanelOLS</span><span class="p">,</span> <span class="n">RandomEffects</span><span class="p">,</span> <span class="n">compare</span>
+<span class="kn">from</span> <span class="nn">statsmodels.api</span> <span class="kn">import</span> <span class="n">add_constant</span>
+
+<span class="c1"># X 변수</span>
+<span class="n">X_with_const</span> <span class="o">=</span> <span class="n">add_constant</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_m&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_f&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;health&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;life_satis&#39;</span><span class="p">,</span> <span class="s1">&#39;achiev&#39;</span><span class="p">,</span> <span class="s1">&#39;edu_plan&#39;</span><span class="p">,</span> <span class="s1">&#39;fa_support&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;pr_father&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_mother&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_a&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_b&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;bullying&#39;</span><span class="p">,</span> <span class="s1">&#39;help_in_sc&#39;</span><span class="p">,</span> <span class="s1">&#39;help_community&#39;</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="c1"># Pooled OLS 모델을 사용하여 회귀 모델을 실행</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">PooledOLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;score_overall&#39;</span><span class="p">],</span> <span class="n">X_with_const</span><span class="p">)</span>
+<span class="n">pooled_results</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">&#39;clustered&#39;</span><span class="p">,</span> <span class="n">cluster_entity</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 결과 요약을 출력</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pooled_results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                          PooledOLS Estimation Summary                          
+================================================================================
+Dep. Variable:          score_overall   R-squared:                        0.2544
+Estimator:                  PooledOLS   R-squared (Between):              0.3878
+No. Observations:               11572   R-squared (Within):               0.0838
+Date:                Sat, Feb 22 2025   R-squared (Overall):              0.2544
+Time:                        12:13:02   Log-likelihood                 -1.11e+04
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      246.36
+Entities:                        1550   P-value                           0.0000
+Avg Obs:                       7.4658   Distribution:                F(16,11555)
+Min Obs:                       1.0000                                           
+Max Obs:                       18.000   F-statistic (robust):             108.74
+                                        P-value                           0.0000
+Time periods:                       9   Distribution:                F(16,11555)
+Avg Obs:                       1285.8                                           
+Min Obs:                       1078.0                                           
+Max Obs:                       1558.0                                           
+                                                                                
+                               Parameter Estimates                                
+==================================================================================
+                Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+----------------------------------------------------------------------------------
+const              0.3723     0.1047     3.5557     0.0004      0.1671      0.5775
+male               0.0658     0.0216     3.0394     0.0024      0.0234      0.1082
+par_edu_m          0.0375     0.0129     2.9119     0.0036      0.0122      0.0627
+par_edu_f          0.0697     0.0121     5.7778     0.0000      0.0460      0.0933
+income            -0.0011     0.0054    -0.1951     0.8453     -0.0116      0.0095
+health            -0.0126     0.0131    -0.9613     0.3364     -0.0382      0.0131
+life_satis         0.1750     0.0157     11.173     0.0000      0.1443      0.2057
+achiev             0.4848     0.0207     23.369     0.0000      0.4441      0.5254
+edu_plan           0.1236     0.0085     14.622     0.0000      0.1071      0.1402
+fa_support        -0.0052     0.0192    -0.2685     0.7884     -0.0428      0.0325
+pr_father         -0.0032     0.0149    -0.2117     0.8323     -0.0324      0.0261
+pr_mother         -0.0099     0.0157    -0.6330     0.5267     -0.0406      0.0208
+parenting_a        0.0895     0.0154     5.8160     0.0000      0.0593      0.1196
+parenting_b       -0.0659     0.0138    -4.7617     0.0000     -0.0930     -0.0388
+bullying           0.0257     0.0282     0.9121     0.3617     -0.0295      0.0809
+help_in_sc        -0.0747     0.0152    -4.9017     0.0000     -0.1046     -0.0449
+help_community     0.0838     0.0163     5.1456     0.0000      0.0519      0.1157
+==================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<section id="chatgpt-q-a">
+<h4>ChatGPT Q&amp;A<a class="headerlink" href="#chatgpt-q-a" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p><b>아래 표를 변수명과 Parameter만으로 표를 만들어줘. 파라미터 옆에는 별표를 붙이는데 P-value가 0.01보다 작으면 ***, 0.01보다 크고 0.05보다 작으면 **, 0.05보다 크고 0.1보다 작으면 *으로 표시해줘.</b></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>==================================================================================
+                Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+----------------------------------------------------------------------------------
+const              0.3723     0.1047     3.5557     0.0004      0.1671      0.5775
+male               0.0658     0.0216     3.0394     0.0024      0.0234      0.1082
+par_edu_m          0.0375     0.0129     2.9119     0.0036      0.0122      0.0627
+par_edu_f          0.0697     0.0121     5.7778     0.0000      0.0460      0.0933
+income            -0.0011     0.0054    -0.1951     0.8453     -0.0116      0.0095
+health            -0.0126     0.0131    -0.9613     0.3364     -0.0382      0.0131
+life_satis         0.1750     0.0157     11.173     0.0000      0.1443      0.2057
+achiev             0.4848     0.0207     23.369     0.0000      0.4441      0.5254
+edu_plan           0.1236     0.0085     14.622     0.0000      0.1071      0.1402
+fa_support        -0.0052     0.0192    -0.2685     0.7884     -0.0428      0.0325
+pr_father         -0.0032     0.0149    -0.2117     0.8323     -0.0324      0.0261
+pr_mother         -0.0099     0.0157    -0.6330     0.5267     -0.0406      0.0208
+parenting_a        0.0895     0.0154     5.8160     0.0000      0.0593      0.1196
+parenting_b       -0.0659     0.0138    -4.7617     0.0000     -0.0930     -0.0388
+bullying           0.0257     0.0282     0.9121     0.3617     -0.0295      0.0809
+help_in_sc        -0.0747     0.0152    -4.9017     0.0000     -0.1046     -0.0449
+help_community     0.0838     0.0163     5.1456     0.0000      0.0519      0.1157
+==================================================================================
+</pre></div>
+</div>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><p>다음은 요청하신 대로 변수명과 파라미터를 정리한 표입니다. 파라미터 값 옆에 P-value에 따른 별표를 표시했습니다:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>| 변수명             | Parameter    |
+|-------------------|--------------|
+| const             | 0.3723***    |
+| male              | 0.0658**     |
+| par_edu_m         | 0.0375**     |
+| par_edu_f         | 0.0697***    |
+| income            | -0.0011      |
+| health            | -0.0126      |
+| life_satis        | 0.1750***    |
+| achiev            | 0.4848***    |
+| edu_plan          | 0.1236***    |
+| fa_support        | -0.0052      |
+| pr_father         | -0.0032      |
+| pr_mother         | -0.0099      |
+| parenting_a       | 0.0895***    |
+| parenting_b       | -0.0659***   |
+| bullying          | 0.0257       |
+| help_in_sc        | -0.0747***   |
+| help_community    | 0.0838***    |
+</pre></div>
+</div>
+<p>별표는 다음 기준에 따라 표시되었습니다:</p>
+<ul class="simple">
+<li><p>P-value &lt; 0.01: ***</p></li>
+<li><p>0.01 ≤ P-value &lt; 0.05: **</p></li>
+<li><p>0.05 ≤ P-value &lt; 0.1: *</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="id6">
+<h3>고정효과 모형<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">linearmodels.panel</span> <span class="kn">import</span> <span class="n">PooledOLS</span><span class="p">,</span> <span class="n">PanelOLS</span><span class="p">,</span> <span class="n">RandomEffects</span><span class="p">,</span> <span class="n">compare</span>
+<span class="kn">from</span> <span class="nn">statsmodels.api</span> <span class="kn">import</span> <span class="n">add_constant</span>
+
+<span class="c1"># X 변수</span>
+<span class="n">X_without_const</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_m&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_f&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;health&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;life_satis&#39;</span><span class="p">,</span> <span class="s1">&#39;achiev&#39;</span><span class="p">,</span> <span class="s1">&#39;edu_plan&#39;</span><span class="p">,</span> <span class="s1">&#39;fa_support&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;pr_father&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_mother&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_a&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_b&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;bullying&#39;</span><span class="p">,</span> <span class="s1">&#39;help_in_sc&#39;</span><span class="p">,</span> <span class="s1">&#39;help_community&#39;</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="c1"># 고정효과 모델을 사용하여 회귀 모델을 실행</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">PanelOLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;score_overall&#39;</span><span class="p">],</span> <span class="n">X_without_const</span><span class="p">,</span> 
+               <span class="n">drop_absorbed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">entity_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fe_results</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">&#39;clustered&#39;</span><span class="p">,</span> <span class="n">cluster_entity</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 결과 요약을 출력</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fe_results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                          PanelOLS Estimation Summary                           
+================================================================================
+Dep. Variable:          score_overall   R-squared:                        0.1283
+Estimator:                   PanelOLS   R-squared (Between):              0.8172
+No. Observations:               11572   R-squared (Within):               0.1283
+Date:                Sat, Feb 22 2025   R-squared (Overall):              0.8048
+Time:                        12:13:03   Log-likelihood                   -7769.8
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      113.28
+Entities:                        1550   P-value                           0.0000
+Avg Obs:                       7.4658   Distribution:                F(13,10009)
+Min Obs:                       1.0000                                           
+Max Obs:                       18.000   F-statistic (robust):             74.778
+                                        P-value                           0.0000
+Time periods:                       9   Distribution:                F(13,10009)
+Avg Obs:                       1285.8                                           
+Min Obs:                       1078.0                                           
+Max Obs:                       1558.0                                           
+                                                                                
+                               Parameter Estimates                                
+==================================================================================
+                Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+----------------------------------------------------------------------------------
+income            -0.0272     0.0131    -2.0665     0.0388     -0.0529     -0.0014
+health            -0.0325     0.0108    -3.0175     0.0026     -0.0535     -0.0114
+life_satis         0.2009     0.0135     14.892     0.0000      0.1745      0.2274
+achiev             0.2716     0.0174     15.628     0.0000      0.2375      0.3057
+edu_plan           0.0518     0.0073     7.1062     0.0000      0.0375      0.0661
+fa_support         0.0291     0.0160     1.8193     0.0689     -0.0023      0.0605
+pr_father         -0.0156     0.0128    -1.2137     0.2249     -0.0408      0.0096
+pr_mother          0.0227     0.0127     1.7823     0.0747     -0.0023      0.0476
+parenting_a        0.0483     0.0132     3.6524     0.0003      0.0224      0.0743
+parenting_b       -0.0022     0.0126    -0.1790     0.8580     -0.0269      0.0224
+bullying           0.1209     0.0294     4.1152     0.0000      0.0633      0.1785
+help_in_sc        -0.0541     0.0132    -4.0884     0.0000     -0.0801     -0.0282
+help_community     0.0383     0.0132     2.9087     0.0036      0.0125      0.0642
+==================================================================================
+
+F-test for Poolability: 5.2439
+P-value: 0.0000
+Distribution: F(1549,10009)
+
+Included effects: Entity
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\pilsu\AppData\Local\Temp\ipykernel_9976\1452922815.py:16: AbsorbingEffectWarning: 
+Variables have been fully absorbed and have removed from the regression:
+
+male, par_edu_m, par_edu_f
+
+  fe_results = mod.fit(cov_type=&#39;clustered&#39;, cluster_entity=True)
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>AbsorbingEffectWarning 이유:(ChatGPT 설명)</strong> 이 경고는 모델에서 특정 변수가 완전히 흡수되어 회귀에서 제거되었다고 알리는 것입니다. ‘male’ 변수가 여기에 해당됩니다. 이는 ‘male’ 변수가 데이터 내 다른 변수와 완벽하게 상관되어 있거나, 모델의 고정 효과나 더미 변수와 완벽하게 상관되어 있어서, 이 변수의 효과를 모델이 구분할 수 없다는 의미입니다. 이런 경우 변수가 회귀에서 어떠한 추가적인 설명력도 제공하지 못하므로 모델에서 제외됩니다.</p></li>
+</ul>
+</section>
+<section id="id7">
+<h3>확률효과 모형<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">linearmodels.panel</span> <span class="kn">import</span> <span class="n">PooledOLS</span><span class="p">,</span> <span class="n">PanelOLS</span><span class="p">,</span> <span class="n">RandomEffects</span><span class="p">,</span> <span class="n">compare</span>
+<span class="kn">from</span> <span class="nn">statsmodels.api</span> <span class="kn">import</span> <span class="n">add_constant</span>
+
+<span class="c1"># X 변수</span>
+<span class="n">X_with_const</span> <span class="o">=</span> <span class="n">add_constant</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_m&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_f&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;health&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;life_satis&#39;</span><span class="p">,</span> <span class="s1">&#39;achiev&#39;</span><span class="p">,</span> <span class="s1">&#39;edu_plan&#39;</span><span class="p">,</span> <span class="s1">&#39;fa_support&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;pr_father&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_mother&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_a&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_b&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;bullying&#39;</span><span class="p">,</span> <span class="s1">&#39;help_in_sc&#39;</span><span class="p">,</span> <span class="s1">&#39;help_community&#39;</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="c1"># 확률효과 모델을 사용하여 회귀 모델을 실행</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">RandomEffects</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;score_overall&#39;</span><span class="p">],</span> <span class="n">X_with_const</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># 결과 요약을 출력</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        RandomEffects Estimation Summary                        
+================================================================================
+Dep. Variable:          score_overall   R-squared:                        0.2779
+Estimator:              RandomEffects   R-squared (Between):              0.3320
+No. Observations:               11572   R-squared (Within):               0.1236
+Date:                Sat, Feb 22 2025   R-squared (Overall):              0.2372
+Time:                        12:13:03   Log-likelihood                   -8777.3
+Cov. Estimator:            Unadjusted                                           
+                                        F-statistic:                      277.95
+Entities:                        1550   P-value                           0.0000
+Avg Obs:                       7.4658   Distribution:                F(16,11555)
+Min Obs:                       1.0000                                           
+Max Obs:                       18.000   F-statistic (robust):             143.68
+                                        P-value                           0.0000
+Time periods:                       9   Distribution:                F(16,11555)
+Avg Obs:                       1285.8                                           
+Min Obs:                       1078.0                                           
+Max Obs:                       1558.0                                           
+                                                                                
+                               Parameter Estimates                                
+==================================================================================
+                Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+----------------------------------------------------------------------------------
+const              0.7505     0.0794     9.4538     0.0000      0.5949      0.9061
+male               0.0581     0.0207     2.8076     0.0050      0.0175      0.0987
+par_edu_m          0.0405     0.0119     3.4115     0.0006      0.0172      0.0637
+par_edu_f          0.0830     0.0116     7.1867     0.0000      0.0604      0.1057
+income            -0.0175     0.0041    -4.2910     0.0000     -0.0255     -0.0095
+health            -0.0284     0.0092    -3.0910     0.0020     -0.0463     -0.0104
+life_satis         0.1952     0.0108     18.138     0.0000      0.1741      0.2163
+achiev             0.3402     0.0130     26.187     0.0000      0.3148      0.3657
+edu_plan           0.0722     0.0068     10.576     0.0000      0.0588      0.0855
+fa_support         0.0236     0.0133     1.7788     0.0753     -0.0024      0.0496
+pr_father         -0.0113     0.0099    -1.1401     0.2543     -0.0307      0.0081
+pr_mother          0.0152     0.0110     1.3879     0.1652     -0.0063      0.0368
+parenting_a        0.0648     0.0107     6.0587     0.0000      0.0439      0.0858
+parenting_b       -0.0228     0.0100    -2.2838     0.0224     -0.0425     -0.0032
+bullying           0.0965     0.0200     4.8377     0.0000      0.0574      0.1356
+help_in_sc        -0.0624     0.0114    -5.4540     0.0000     -0.0848     -0.0400
+help_community     0.0518     0.0119     4.3382     0.0000      0.0284      0.0752
+==================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id8">
+<h4>ChatGPT Q&amp;A<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p><b>다음 3개의 표를 하나로 합쳐줘.</b></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>| 변수명             | 통합 OLS      |
+|-------------------|--------------|
+| const             | 0.3723***    |
+| male              | 0.0658**     |
+| par_edu_m         | 0.0375**     |
+| par_edu_f         | 0.0697***    |
+| income            | -0.0011      |
+| health            | -0.0126      |
+| life_satis        | 0.1750***    |
+| achiev            | 0.4848***    |
+| edu_plan          | 0.1236***    |
+| fa_support        | -0.0052      |
+| pr_father         | -0.0032      |
+| pr_mother         | -0.0099      |
+| parenting_a       | 0.0895***    |
+| parenting_b       | -0.0659***   |
+| bullying          | 0.0257       |
+| help_in_sc        | -0.0747***   |
+| help_community    | 0.0838***    |
+
+| 변수명             | 고정효과      |
+|-------------------|--------------|
+| income            | -0.0272**    |
+| health            | -0.0325**    |
+| life_satis        | 0.2009***    |
+| achiev            | 0.2716***    |
+| edu_plan          | 0.0518***    |
+| fa_support        | 0.0291*      |
+| pr_father         | -0.0156      |
+| pr_mother         | 0.0227*      |
+| parenting_a       | 0.0483***    |
+| parenting_b       | -0.0022      |
+| bullying          | 0.1209***    |
+| help_in_sc        | -0.0541***   |
+| help_community    | 0.0383**     |
+
+| 변수명             | 확률효과      |
+|-------------------|--------------|
+| const             | 0.7505***    |
+| male              | 0.0581**     |
+| par_edu_m         | 0.0405***    |
+| par_edu_f         | 0.0830***    |
+| income            | -0.0175***   |
+| health            | -0.0284***   |
+| life_satis        | 0.1952***    |
+| achiev            | 0.3402***    |
+| edu_plan          | 0.0722***    |
+| fa_support        | 0.0236*      |
+| pr_father         | -0.0113      |
+| pr_mother         | 0.0152       |
+| parenting_a       | 0.0648***    |
+| parenting_b       | -0.0228**    |
+| bullying          | 0.0965***    |
+| help_in_sc        | -0.0624***   |
+| help_community    | 0.0518***    |
+</pre></div>
+</div>
+</div></blockquote>
+<hr class="docutils" />
+<blockquote>
+<div><p>다음은 요청하신 대로 합친 결과입니다.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>| 변수명             | 통합 OLS      | 고정효과      | 확률효과      |
+|-------------------|--------------|--------------|--------------|
+| const             | 0.3723***    | -            | 0.7505***    |
+| male              | 0.0658**     | -            | 0.0581**     |
+| par_edu_m         | 0.0375**     | -            | 0.0405***    |
+| par_edu_f         | 0.0697***    | -            | 0.0830***    |
+| income            | -0.0011      | -0.0272**    | -0.0175***   |
+| health            | -0.0126      | -0.0325**    | -0.0284***   |
+| life_satis        | 0.1750***    | 0.2009***    | 0.1952***    |
+| achiev            | 0.4848***    | 0.2716***    | 0.3402***    |
+| edu_plan          | 0.1236***    | 0.0518***    | 0.0722***    |
+| fa_support        | -0.0052      | 0.0291*      | 0.0236*      |
+| pr_father         | -0.0032      | -0.0156      | -0.0113      |
+| pr_mother         | -0.0099      | 0.0227*      | 0.0152       |
+| parenting_a       | 0.0895***    | 0.0483***    | 0.0648***    |
+| parenting_b       | -0.0659***   | -0.0022      | -0.0228**    |
+| bullying          | 0.0257       | 0.1209***    | 0.0965***    |
+| help_in_sc        | -0.0747***   | -0.0541***   | -0.0624***   |
+| help_community    | 0.0838***    | 0.0383**     | 0.0518***    |
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="ii">
+<h2>3 패널 회귀분석 II<a class="headerlink" href="#ii" title="Link to this heading">#</a></h2>
+<section id="id9">
+<h3>시간 더미변수 추가<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;wave1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WAVE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;wave2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WAVE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;wave3&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WAVE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;wave4&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WAVE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;wave5&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WAVE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;wave6&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WAVE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;wave7&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WAVE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;wave8&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WAVE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;wave9&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;WAVE&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;WAVE&#39;</span><span class="p">,</span> <span class="s1">&#39;wave1&#39;</span><span class="p">]])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>       WAVE  wave1
+0       1.0      1
+1       1.0      1
+2       1.0      1
+3       1.0      1
+4       1.0      1
+...     ...    ...
+14710   9.0      0
+14711   9.0      0
+14712   9.0      0
+14713   9.0      0
+14714   9.0      0
+
+[11572 rows x 2 columns]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ID와 WAVE를 인덱스로 설정</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s1">&#39;ID&#39;</span><span class="p">,</span> <span class="s1">&#39;WAVE&#39;</span><span class="p">])</span>
+<span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>score_overall</th>
+      <th>male</th>
+      <th>par_edu_m</th>
+      <th>par_edu_f</th>
+      <th>income</th>
+      <th>health</th>
+      <th>life_satis</th>
+      <th>achiev</th>
+      <th>edu_plan</th>
+      <th>fa_support</th>
+      <th>...</th>
+      <th>help_community</th>
+      <th>wave1</th>
+      <th>wave2</th>
+      <th>wave3</th>
+      <th>wave4</th>
+      <th>wave5</th>
+      <th>wave6</th>
+      <th>wave7</th>
+      <th>wave8</th>
+      <th>wave9</th>
+    </tr>
+    <tr>
+      <th>ID</th>
+      <th>WAVE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <th>1.0</th>
+      <td>4.6</td>
+      <td>0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.2</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>3.857143</td>
+      <td>4.0</td>
+      <td>3.000000</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <th>1.0</th>
+      <td>4.2</td>
+      <td>0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>4.000000</td>
+      <td>4.0</td>
+      <td>4.000000</td>
+      <td>...</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <th>1.0</th>
+      <td>3.8</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>2.5</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.714286</td>
+      <td>3.0</td>
+      <td>3.000000</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <th>1.0</th>
+      <td>3.6</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.714286</td>
+      <td>4.0</td>
+      <td>3.714286</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <th>1.0</th>
+      <td>2.8</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>1.0</td>
+      <td>4.0</td>
+      <td>2.714286</td>
+      <td>4.0</td>
+      <td>3.714286</td>
+      <td>...</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1630</th>
+      <th>9.0</th>
+      <td>3.2</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>4.0</td>
+      <td>2.5</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.714286</td>
+      <td>2.0</td>
+      <td>3.428571</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1631</th>
+      <th>9.0</th>
+      <td>3.4</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.285714</td>
+      <td>2.0</td>
+      <td>3.000000</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1632</th>
+      <th>9.0</th>
+      <td>3.4</td>
+      <td>1</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.000000</td>
+      <td>2.0</td>
+      <td>2.142857</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1633</th>
+      <th>9.0</th>
+      <td>3.6</td>
+      <td>0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>2.857143</td>
+      <td>2.0</td>
+      <td>3.428571</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1634</th>
+      <th>9.0</th>
+      <td>3.2</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>3.0</td>
+      <td>3.000000</td>
+      <td>2.0</td>
+      <td>3.000000</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>11572 rows × 26 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="id10">
+<h3>통합(pooled) OLS 모형<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">linearmodels.panel</span> <span class="kn">import</span> <span class="n">PooledOLS</span><span class="p">,</span> <span class="n">PanelOLS</span><span class="p">,</span> <span class="n">RandomEffects</span><span class="p">,</span> <span class="n">compare</span>
+<span class="kn">from</span> <span class="nn">statsmodels.api</span> <span class="kn">import</span> <span class="n">add_constant</span>
+
+<span class="c1"># X 변수</span>
+<span class="n">X_with_const</span> <span class="o">=</span> <span class="n">add_constant</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_m&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_f&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;health&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;life_satis&#39;</span><span class="p">,</span> <span class="s1">&#39;achiev&#39;</span><span class="p">,</span> <span class="s1">&#39;edu_plan&#39;</span><span class="p">,</span> <span class="s1">&#39;fa_support&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;pr_father&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_mother&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_a&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_b&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;bullying&#39;</span><span class="p">,</span> <span class="s1">&#39;help_in_sc&#39;</span><span class="p">,</span> <span class="s1">&#39;help_community&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;wave2&#39;</span><span class="p">,</span> <span class="s1">&#39;wave3&#39;</span><span class="p">,</span> <span class="s1">&#39;wave4&#39;</span><span class="p">,</span> <span class="s1">&#39;wave5&#39;</span><span class="p">,</span> <span class="s1">&#39;wave6&#39;</span><span class="p">,</span> <span class="s1">&#39;wave7&#39;</span><span class="p">,</span> <span class="s1">&#39;wave8&#39;</span><span class="p">,</span> <span class="s1">&#39;wave9&#39;</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="c1"># Pooled OLS 모델을 사용하여 회귀 모델을 실행</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">PooledOLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;score_overall&#39;</span><span class="p">],</span> <span class="n">X_with_const</span><span class="p">)</span>
+<span class="n">pooled_results</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">&#39;clustered&#39;</span><span class="p">,</span> <span class="n">cluster_entity</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 결과 요약을 출력</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pooled_results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                          PooledOLS Estimation Summary                          
+================================================================================
+Dep. Variable:          score_overall   R-squared:                        0.3102
+Estimator:                  PooledOLS   R-squared (Between):              0.4256
+No. Observations:               11572   R-squared (Within):               0.1685
+Date:                Sat, Feb 22 2025   R-squared (Overall):              0.3102
+Time:                        12:13:03   Log-likelihood                -1.065e+04
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      216.32
+Entities:                        1550   P-value                           0.0000
+Avg Obs:                       7.4658   Distribution:                F(24,11547)
+Min Obs:                       1.0000                                           
+Max Obs:                       18.000   F-statistic (robust):             108.68
+                                        P-value                           0.0000
+Time periods:                       9   Distribution:                F(24,11547)
+Avg Obs:                       1285.8                                           
+Min Obs:                       1078.0                                           
+Max Obs:                       1558.0                                           
+                                                                                
+                               Parameter Estimates                                
+==================================================================================
+                Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+----------------------------------------------------------------------------------
+const              0.6555     0.1119     5.8573     0.0000      0.4361      0.8748
+male               0.0751     0.0212     3.5501     0.0004      0.0336      0.1166
+par_edu_m          0.0355     0.0126     2.8226     0.0048      0.0109      0.0602
+par_edu_f          0.0570     0.0120     4.7602     0.0000      0.0335      0.0805
+income             0.0092     0.0074     1.2412     0.2146     -0.0053      0.0236
+health            -0.0161     0.0126    -1.2734     0.2029     -0.0409      0.0087
+life_satis         0.0982     0.0162     6.0793     0.0000      0.0666      0.1299
+achiev             0.5153     0.0200     25.819     0.0000      0.4762      0.5544
+edu_plan           0.1884     0.0153     12.311     0.0000      0.1584      0.2184
+fa_support        -0.0057     0.0186    -0.3049     0.7605     -0.0420      0.0307
+pr_father          0.0053     0.0144     0.3674     0.7134     -0.0229      0.0335
+pr_mother         -0.0171     0.0152    -1.1273     0.2597     -0.0469      0.0127
+parenting_a        0.0836     0.0149     5.6037     0.0000      0.0544      0.1129
+parenting_b       -0.0796     0.0134    -5.9400     0.0000     -0.1059     -0.0534
+bullying          -0.0749     0.0274    -2.7391     0.0062     -0.1286     -0.0213
+help_in_sc         0.0016     0.0153     0.1031     0.9179     -0.0283      0.0315
+help_community     0.0693     0.0159     4.3558     0.0000      0.0381      0.1005
+wave2             -0.0256     0.0176    -1.4517     0.1466     -0.0602      0.0090
+wave3             -0.1112     0.0189    -5.8771     0.0000     -0.1483     -0.0741
+wave4             -0.3827     0.0207    -18.522     0.0000     -0.4232     -0.3422
+wave5             -0.4156     0.0217    -19.131     0.0000     -0.4582     -0.3730
+wave6             -0.4162     0.0222    -18.741     0.0000     -0.4598     -0.3727
+wave7             -0.4538     0.0231    -19.642     0.0000     -0.4991     -0.4085
+wave8             -0.4652     0.0249    -18.718     0.0000     -0.5139     -0.4165
+wave9             -0.0939     0.0395    -2.3748     0.0176     -0.1714     -0.0164
+==================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id11">
+<h3>고정효과 모형<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">linearmodels.panel</span> <span class="kn">import</span> <span class="n">PooledOLS</span><span class="p">,</span> <span class="n">PanelOLS</span><span class="p">,</span> <span class="n">RandomEffects</span><span class="p">,</span> <span class="n">compare</span>
+<span class="kn">from</span> <span class="nn">statsmodels.api</span> <span class="kn">import</span> <span class="n">add_constant</span>
+
+<span class="c1"># X 변수</span>
+<span class="n">X_without_const</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_m&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_f&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;health&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;life_satis&#39;</span><span class="p">,</span> <span class="s1">&#39;achiev&#39;</span><span class="p">,</span> <span class="s1">&#39;edu_plan&#39;</span><span class="p">,</span> <span class="s1">&#39;fa_support&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;pr_father&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_mother&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_a&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_b&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;bullying&#39;</span><span class="p">,</span> <span class="s1">&#39;help_in_sc&#39;</span><span class="p">,</span> <span class="s1">&#39;help_community&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;wave2&#39;</span><span class="p">,</span> <span class="s1">&#39;wave3&#39;</span><span class="p">,</span> <span class="s1">&#39;wave4&#39;</span><span class="p">,</span> <span class="s1">&#39;wave5&#39;</span><span class="p">,</span> <span class="s1">&#39;wave6&#39;</span><span class="p">,</span> <span class="s1">&#39;wave7&#39;</span><span class="p">,</span> <span class="s1">&#39;wave8&#39;</span><span class="p">,</span> <span class="s1">&#39;wave9&#39;</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="c1"># 고정효과 모델을 사용하여 회귀 모델을 실행</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">PanelOLS</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;score_overall&#39;</span><span class="p">],</span> <span class="n">X_without_const</span><span class="p">,</span> 
+               <span class="n">drop_absorbed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">entity_effects</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">fe_results</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">cov_type</span><span class="o">=</span><span class="s1">&#39;clustered&#39;</span><span class="p">,</span> <span class="n">cluster_entity</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># 결과 요약을 출력</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fe_results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                          PanelOLS Estimation Summary                           
+================================================================================
+Dep. Variable:          score_overall   R-squared:                        0.2085
+Estimator:                   PanelOLS   R-squared (Between):              0.7069
+No. Observations:               11572   R-squared (Within):               0.2085
+Date:                Sat, Feb 22 2025   R-squared (Overall):              0.6910
+Time:                        12:13:03   Log-likelihood                   -7211.3
+Cov. Estimator:             Clustered                                           
+                                        F-statistic:                      125.44
+Entities:                        1550   P-value                           0.0000
+Avg Obs:                       7.4658   Distribution:                F(21,10001)
+Min Obs:                       1.0000                                           
+Max Obs:                       18.000   F-statistic (robust):             79.764
+                                        P-value                           0.0000
+Time periods:                       9   Distribution:                F(21,10001)
+Avg Obs:                       1285.8                                           
+Min Obs:                       1078.0                                           
+Max Obs:                       1558.0                                           
+                                                                                
+                               Parameter Estimates                                
+==================================================================================
+                Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+----------------------------------------------------------------------------------
+income            -0.0069     0.0028    -2.4383     0.0148     -0.0125     -0.0014
+health            -0.0293     0.0100    -2.9273     0.0034     -0.0489     -0.0097
+life_satis         0.1013     0.0133     7.6202     0.0000      0.0752      0.1273
+achiev             0.3294     0.0166     19.863     0.0000      0.2969      0.3619
+edu_plan           0.0520     0.0124     4.1828     0.0000      0.0277      0.0764
+fa_support         0.0332     0.0152     2.1776     0.0295      0.0033      0.0631
+pr_father         -0.0026     0.0119    -0.2206     0.8254     -0.0260      0.0207
+pr_mother          0.0115     0.0121     0.9518     0.3412     -0.0122      0.0352
+parenting_a        0.0470     0.0125     3.7482     0.0002      0.0224      0.0715
+parenting_b       -0.0212     0.0119    -1.7787     0.0753     -0.0446      0.0022
+bullying           0.0041     0.0289     0.1409     0.8879     -0.0526      0.0607
+help_in_sc         0.0242     0.0129     1.8853     0.0594     -0.0010      0.0494
+help_community     0.0233     0.0125     1.8553     0.0636     -0.0013      0.0478
+wave2             -0.0052     0.0170    -0.3058     0.7598     -0.0385      0.0281
+wave3             -0.0437     0.0182    -2.3969     0.0166     -0.0794     -0.0080
+wave4             -0.3196     0.0201    -15.870     0.0000     -0.3591     -0.2801
+wave5             -0.3504     0.0218    -16.052     0.0000     -0.3932     -0.3076
+wave6             -0.3542     0.0219    -16.139     0.0000     -0.3972     -0.3111
+wave7             -0.4005     0.0224    -17.901     0.0000     -0.4444     -0.3567
+wave8             -0.4147     0.0237    -17.465     0.0000     -0.4613     -0.3682
+wave9             -0.2939     0.0332    -8.8574     0.0000     -0.3590     -0.2289
+==================================================================================
+
+F-test for Poolability: 5.4346
+P-value: 0.0000
+Distribution: F(1549,10001)
+
+Included effects: Entity
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\pilsu\AppData\Local\Temp\ipykernel_9976\3963480567.py:17: AbsorbingEffectWarning: 
+Variables have been fully absorbed and have removed from the regression:
+
+male, par_edu_m, par_edu_f
+
+  fe_results = mod.fit(cov_type=&#39;clustered&#39;, cluster_entity=True)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id12">
+<h3>확률효과 모형<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">linearmodels.panel</span> <span class="kn">import</span> <span class="n">PooledOLS</span><span class="p">,</span> <span class="n">PanelOLS</span><span class="p">,</span> <span class="n">RandomEffects</span><span class="p">,</span> <span class="n">compare</span>
+<span class="kn">from</span> <span class="nn">statsmodels.api</span> <span class="kn">import</span> <span class="n">add_constant</span>
+
+<span class="c1"># X 변수</span>
+<span class="n">X_with_const</span> <span class="o">=</span> <span class="n">add_constant</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">[[</span><span class="s1">&#39;male&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_m&#39;</span><span class="p">,</span> <span class="s1">&#39;par_edu_f&#39;</span><span class="p">,</span> <span class="s1">&#39;income&#39;</span><span class="p">,</span> <span class="s1">&#39;health&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;life_satis&#39;</span><span class="p">,</span> <span class="s1">&#39;achiev&#39;</span><span class="p">,</span> <span class="s1">&#39;edu_plan&#39;</span><span class="p">,</span> <span class="s1">&#39;fa_support&#39;</span><span class="p">,</span> 
+          <span class="s1">&#39;pr_father&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_mother&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_a&#39;</span><span class="p">,</span> <span class="s1">&#39;parenting_b&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;bullying&#39;</span><span class="p">,</span> <span class="s1">&#39;help_in_sc&#39;</span><span class="p">,</span> <span class="s1">&#39;help_community&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;wave2&#39;</span><span class="p">,</span> <span class="s1">&#39;wave3&#39;</span><span class="p">,</span> <span class="s1">&#39;wave4&#39;</span><span class="p">,</span> <span class="s1">&#39;wave5&#39;</span><span class="p">,</span> <span class="s1">&#39;wave6&#39;</span><span class="p">,</span> <span class="s1">&#39;wave7&#39;</span><span class="p">,</span> <span class="s1">&#39;wave8&#39;</span><span class="p">,</span> <span class="s1">&#39;wave9&#39;</span><span class="p">]]</span>
+<span class="p">)</span>
+
+<span class="c1"># 확률효과 모델을 사용하여 회귀 모델을 실행</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">RandomEffects</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;score_overall&#39;</span><span class="p">],</span> <span class="n">X_with_const</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="c1"># 결과 요약을 출력</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                        RandomEffects Estimation Summary                        
+================================================================================
+Dep. Variable:          score_overall   R-squared:                        0.3395
+Estimator:              RandomEffects   R-squared (Between):              0.3718
+No. Observations:               11572   R-squared (Within):               0.2043
+Date:                Sat, Feb 22 2025   R-squared (Overall):              0.2938
+Time:                        12:13:04   Log-likelihood                   -8198.0
+Cov. Estimator:            Unadjusted                                           
+                                        F-statistic:                      247.33
+Entities:                        1550   P-value                           0.0000
+Avg Obs:                       7.4658   Distribution:                F(24,11547)
+Min Obs:                       1.0000                                           
+Max Obs:                       18.000   F-statistic (robust):             149.00
+                                        P-value                           0.0000
+Time periods:                       9   Distribution:                F(24,11547)
+Avg Obs:                       1285.8                                           
+Min Obs:                       1078.0                                           
+Max Obs:                       1558.0                                           
+                                                                                
+                               Parameter Estimates                                
+==================================================================================
+                Parameter  Std. Err.     T-stat    P-value    Lower CI    Upper CI
+----------------------------------------------------------------------------------
+const              1.1476     0.0838     13.693     0.0000      0.9833      1.3118
+male               0.0665     0.0203     3.2700     0.0011      0.0266      0.1063
+par_edu_m          0.0397     0.0116     3.4114     0.0006      0.0169      0.0626
+par_edu_f          0.0661     0.0113     5.8247     0.0000      0.0439      0.0884
+income            -0.0009     0.0040    -0.2166     0.8285     -0.0086      0.0069
+health            -0.0277     0.0088    -3.1520     0.0016     -0.0450     -0.0105
+life_satis         0.1011     0.0109     9.2621     0.0000      0.0797      0.1225
+achiev             0.3884     0.0126     30.793     0.0000      0.3636      0.4131
+edu_plan           0.0930     0.0109     8.5202     0.0000      0.0716      0.1143
+fa_support         0.0268     0.0127     2.1127     0.0346      0.0019      0.0517
+pr_father          0.0006     0.0095     0.0583     0.9535     -0.0180      0.0191
+pr_mother          0.0053     0.0105     0.5022     0.6155     -0.0153      0.0259
+parenting_a        0.0616     0.0102     6.0297     0.0000      0.0416      0.0817
+parenting_b       -0.0399     0.0096    -4.1697     0.0000     -0.0587     -0.0212
+bullying          -0.0174     0.0195    -0.8952     0.3707     -0.0556      0.0207
+help_in_sc         0.0179     0.0113     1.5888     0.1121     -0.0042      0.0400
+help_community     0.0369     0.0115     3.2063     0.0013      0.0143      0.0594
+wave2             -0.0119     0.0184    -0.6447     0.5191     -0.0479      0.0242
+wave3             -0.0653     0.0189    -3.4650     0.0005     -0.1023     -0.0284
+wave4             -0.3395     0.0193    -17.614     0.0000     -0.3773     -0.3017
+wave5             -0.3709     0.0196    -18.944     0.0000     -0.4093     -0.3325
+wave6             -0.3741     0.0200    -18.718     0.0000     -0.4132     -0.3349
+wave7             -0.4166     0.0205    -20.356     0.0000     -0.4568     -0.3765
+wave8             -0.4303     0.0211    -20.419     0.0000     -0.4716     -0.3890
+wave9             -0.2348     0.0305    -7.6949     0.0000     -0.2946     -0.1750
+==================================================================================
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id13">
+<h3>추정 결과 요약<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>변수명</p></th>
+<th class="head"><p>통합 OLS</p></th>
+<th class="head"><p>고정효과</p></th>
+<th class="head"><p>확률효과</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>const</p></td>
+<td><p>0.6555***</p></td>
+<td><p>-</p></td>
+<td><p>1.1476***</p></td>
+</tr>
+<tr class="row-odd"><td><p>male</p></td>
+<td><p>0.0751***</p></td>
+<td><p>-</p></td>
+<td><p>0.0665***</p></td>
+</tr>
+<tr class="row-even"><td><p>par_edu_m</p></td>
+<td><p>0.0355**</p></td>
+<td><p>-</p></td>
+<td><p>0.0397***</p></td>
+</tr>
+<tr class="row-odd"><td><p>par_edu_f</p></td>
+<td><p>0.0570***</p></td>
+<td><p>-</p></td>
+<td><p>0.0661***</p></td>
+</tr>
+<tr class="row-even"><td><p>income</p></td>
+<td><p>0.0092</p></td>
+<td><p>-0.0069**</p></td>
+<td><p>-0.0009</p></td>
+</tr>
+<tr class="row-odd"><td><p>health</p></td>
+<td><p>-0.0161</p></td>
+<td><p>-0.0293***</p></td>
+<td><p>-0.0277***</p></td>
+</tr>
+<tr class="row-even"><td><p>life_satis</p></td>
+<td><p>0.0982***</p></td>
+<td><p>0.1013***</p></td>
+<td><p>0.1011***</p></td>
+</tr>
+<tr class="row-odd"><td><p>achiev</p></td>
+<td><p>0.5153***</p></td>
+<td><p>0.3294***</p></td>
+<td><p>0.3884***</p></td>
+</tr>
+<tr class="row-even"><td><p>edu_plan</p></td>
+<td><p>0.1884***</p></td>
+<td><p>0.0520***</p></td>
+<td><p>0.0930***</p></td>
+</tr>
+<tr class="row-odd"><td><p>fa_support</p></td>
+<td><p>-0.0057</p></td>
+<td><p>0.0332**</p></td>
+<td><p>0.0268**</p></td>
+</tr>
+<tr class="row-even"><td><p>pr_father</p></td>
+<td><p>0.0053</p></td>
+<td><p>-0.0026</p></td>
+<td><p>0.0006</p></td>
+</tr>
+<tr class="row-odd"><td><p>pr_mother</p></td>
+<td><p>-0.0171</p></td>
+<td><p>0.0115</p></td>
+<td><p>0.0053</p></td>
+</tr>
+<tr class="row-even"><td><p>parenting_a</p></td>
+<td><p>0.0836***</p></td>
+<td><p>0.0470***</p></td>
+<td><p>0.0616***</p></td>
+</tr>
+<tr class="row-odd"><td><p>parenting_b</p></td>
+<td><p>-0.0796***</p></td>
+<td><p>-0.0212*</p></td>
+<td><p>-0.0399***</p></td>
+</tr>
+<tr class="row-even"><td><p>bullying</p></td>
+<td><p>-0.0749***</p></td>
+<td><p>0.0041</p></td>
+<td><p>-0.0174</p></td>
+</tr>
+<tr class="row-odd"><td><p>help_in_sc</p></td>
+<td><p>0.0016</p></td>
+<td><p>0.0242*</p></td>
+<td><p>0.0179</p></td>
+</tr>
+<tr class="row-even"><td><p>help_community</p></td>
+<td><p>0.0693***</p></td>
+<td><p>0.0233*</p></td>
+<td><p>0.0369***</p></td>
+</tr>
+<tr class="row-odd"><td><p>wave2</p></td>
+<td><p>-0.0256</p></td>
+<td><p>-0.0052</p></td>
+<td><p>-0.0119</p></td>
+</tr>
+<tr class="row-even"><td><p>wave3</p></td>
+<td><p>-0.1112***</p></td>
+<td><p>-0.0437**</p></td>
+<td><p>-0.0653***</p></td>
+</tr>
+<tr class="row-odd"><td><p>wave4</p></td>
+<td><p>-0.3827***</p></td>
+<td><p>-0.3196***</p></td>
+<td><p>-0.3395***</p></td>
+</tr>
+<tr class="row-even"><td><p>wave5</p></td>
+<td><p>-0.4156***</p></td>
+<td><p>-0.3504***</p></td>
+<td><p>-0.3709***</p></td>
+</tr>
+<tr class="row-odd"><td><p>wave6</p></td>
+<td><p>-0.4162***</p></td>
+<td><p>-0.3542***</p></td>
+<td><p>-0.3741***</p></td>
+</tr>
+<tr class="row-even"><td><p>wave7</p></td>
+<td><p>-0.4538***</p></td>
+<td><p>-0.4005***</p></td>
+<td><p>-0.4166***</p></td>
+</tr>
+<tr class="row-odd"><td><p>wave8</p></td>
+<td><p>-0.4652***</p></td>
+<td><p>-0.4147***</p></td>
+<td><p>-0.4303***</p></td>
+</tr>
+<tr class="row-even"><td><p>wave9</p></td>
+<td><p>-0.0939**</p></td>
+<td><p>-0.2939***</p></td>
+<td><p>-0.2348***</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="id14">
+<h2>부록: 패널 회귀분석 모형 비교<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<p>다음은 주어진 패널 회귀식에서 통합(Pooled) OLS, 고정효과(Fixed Effects, FE), 확률효과(Random Effects, RE) 모형의 차이점을 요약한 것이다.</p>
+<p><strong>주어진 회귀식</strong></p>
+<div class="math notranslate nohighlight">
+\[
+y_{it} = \beta_0 + \beta_1 m_i + \beta_2 x_{it} + \beta_3 x_{it} m_i + \beta_4 d_t + u_i + e_{it}
+\]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(y_{it}\)</span>: 개체 <span class="math notranslate nohighlight">\(i\)</span>의 시간 <span class="math notranslate nohighlight">\(t\)</span>에서의 종속 변수</p></li>
+<li><p><span class="math notranslate nohighlight">\(m_i\)</span>: 개체 <span class="math notranslate nohighlight">\(i\)</span>의 고정 특성 (다문화 여부 등, 시간에 따라 변하지 않는 변수)</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{it}\)</span>: 시간에 따라 변하는 설명 변수</p></li>
+<li><p><span class="math notranslate nohighlight">\(x_{it} m_i\)</span>: 상호작용항</p></li>
+<li><p><span class="math notranslate nohighlight">\(d_t\)</span>: 시간 고정 효과를 나타내는 더미 변수</p></li>
+<li><p><span class="math notranslate nohighlight">\(u_i\)</span>: 개체 <span class="math notranslate nohighlight">\(i\)</span>의 시간 불변 고유 효과 (미관측 이질성)</p></li>
+<li><p><span class="math notranslate nohighlight">\(e_{it}\)</span>: 잔차, 시간과 개체에 따라 변하는 오차항</p></li>
+</ul>
+<section id="ols">
+<h3>통합 OLS 모형<a class="headerlink" href="#ols" title="Link to this heading">#</a></h3>
+<p>특징:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u_i\)</span>를 무시하고 모든 데이터(모든 <span class="math notranslate nohighlight">\(i\)</span>와 <span class="math notranslate nohighlight">\(t\)</span>)를 단일 회귀모형으로 분석.</p></li>
+<li><p>개체 간 이질성(차이점)을 고려하지 않음.</p></li>
+</ul>
+<p>장점:</p>
+<ul class="simple">
+<li><p>단순하고 계산이 쉽다.</p></li>
+</ul>
+<p>단점:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u_i\)</span>가 <span class="math notranslate nohighlight">\(x_{it}\)</span>와 상관이 있을 경우(내생성 문제), 추정치가 편향되고 일관되지 않음.</p></li>
+<li><p>개체 간 고유한 차이를 무시하기 때문에 설명력이 낮아질 가능성.</p></li>
+</ul>
+<p>비유: 모든 개체를 “동일한 학생”이라고 가정하고, 개체 간 차이를 고려하지 않는 학급 평균 계산.</p>
+</section>
+<section id="id15">
+<h3>고정효과 모형<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<p>특징:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u_i\)</span>를 포함하되, 이를 제거하기 위해 개체마다 평균을 빼는 방식으로 시간 불변 효과 제거.</p></li>
+<li><p><span class="math notranslate nohighlight">\(u_i\)</span>와 <span class="math notranslate nohighlight">\(x_{it}\)</span>가 상관이 있어도 편향 문제를 해결할 수 있음.</p></li>
+</ul>
+<p>장점:</p>
+<ul class="simple">
+<li><p>개체 간의 고유한 차이를 통제하여 <span class="math notranslate nohighlight">\(x_{it}\)</span>의 순수한 효과를 추정 가능.</p></li>
+<li><p><span class="math notranslate nohighlight">\(u_i\)</span>가 <span class="math notranslate nohighlight">\(x_{it}\)</span>와 상관되어 있을 때 유리.</p></li>
+</ul>
+<p>단점:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m_i\)</span>처럼 시간에 따라 변하지 않는 설명변수의 효과(예: 다문화 여부)는 추정할 수 없음.</p></li>
+<li><p>데이터에서 시간에 따른 변화를 활용하므로, 시간 변동성이 적은 데이터에서는 비효율적.</p></li>
+</ul>
+<p>비유: 같은 학생이 매년 시험 점수가 얼마나 바뀌었는지 비교하여 학생 간 차이는 무시하고, 점수 변화만 분석.</p>
+</section>
+<section id="id16">
+<h3>확률효과 모형<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<p>특징:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u_i\)</span>를 확률적으로 분리된 오차항으로 처리(<span class="math notranslate nohighlight">\(u_i \sim N(0, \sigma^2)\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(u_i\)</span>와 <span class="math notranslate nohighlight">\(x_{it}\)</span>가 상관이 없다고 가정.</p></li>
+</ul>
+<p>장점:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m_i\)</span>처럼 시간에 따라 변하지 않는 변수의 효과를 추정 가능.</p></li>
+<li><p>효율적이고 계산이 빠름.</p></li>
+</ul>
+<p>단점:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u_i\)</span>와 <span class="math notranslate nohighlight">\(x_{it}\)</span>가 상관이 있다면(내생성 문제) 추정치가 편향되고 일관되지 않음.</p></li>
+</ul>
+<p>비유: 학생마다 고유한 특성은 무작위로 존재한다고 가정하고, 전체 집단 평균에 기반해 분석.</p>
+<p><strong>모형 선택 기준</strong></p>
+<p>(1) <span class="math notranslate nohighlight">\(u_i\)</span>와 <span class="math notranslate nohighlight">\(x_{it}\)</span>의 상관성 여부</p>
+<ul class="simple">
+<li><p>상관이 있으면 고정효과(FE)를 사용.</p></li>
+<li><p>상관이 없으면 확률효과(RE)를 사용.</p></li>
+</ul>
+<p>(2) 시간에 따라 변하지 않는 설명변수(예: <span class="math notranslate nohighlight">\(m_i\)</span>)의 효과를 추정하고 싶은지 여부</p>
+<ul class="simple">
+<li><p>추정하고 싶다면 확률효과(RE) 선택.</p></li>
+<li><p>필요 없다면 고정효과(FE) 선택.</p></li>
+</ul>
+<p>(3) 하우스만 검정(Hausman Test)</p>
+<ul class="simple">
+<li><p>FE와 RE 중 적합한 모형을 선택하는 데 사용.</p></li>
+<li><p>귀무가설: RE가 적합하다.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="012_%EB%8B%A4%EB%AC%B8%ED%99%94%EC%B2%AD%EC%86%8C%EB%85%84%ED%8C%A8%EB%84%90_%EB%8D%B0%EC%9D%B4%ED%84%B0.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">1.2 다문화청소년패널 데이터</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="020_%EB%8B%A4%EB%AC%B8%ED%99%94_%EB%B0%B0%EA%B2%BD%EA%B3%BC_%ED%95%99%EC%97%85%EC%84%B1%EC%A0%81.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2 다문화 배경과 학업성적</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1 설명변수 요약</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">변수 설명</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">요약 통계량</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">변화 추이</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i">2 패널 회귀분석 I</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pooled-ols">통합(pooled) OLS 모형</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#chatgpt-q-a">ChatGPT Q&amp;A</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">고정효과 모형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">확률효과 모형</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">ChatGPT Q&amp;A</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ii">3 패널 회귀분석 II</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">시간 더미변수 추가</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">통합(pooled) OLS 모형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">고정효과 모형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">확률효과 모형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">추정 결과 요약</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">부록: 패널 회귀분석 모형 비교</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ols">통합 OLS 모형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">고정효과 모형</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">확률효과 모형</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 최필선 민인식
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=5b4479735964841361fd"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=5b4479735964841361fd"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
